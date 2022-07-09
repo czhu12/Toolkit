@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "blueimp-md5": "^2.19.0",
+    "marked": "^4.0.17",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0"

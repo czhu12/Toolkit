@@ -1,8 +1,31 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import { useEffect, useState } from 'react';
+import BrowserScript from "../lib/core/views"
 import styles from '../styles/Home.module.css'
 
+let _bs = null;
+const initialize = () => {
+  const bs = new BrowserScript(window.document.getElementById('main-view'))
+  const code = async function() {
+    bs.text("## Hello world! This is a test of my software");
+    const value = bs.input({defaultValue: 0, label: "Your annual income", placeholder: "Ex: 10000", type: "number"});
+    if (value) {
+      bs.text(`## Your tax is: $${value * 0.15}!`);
+    }
+    const clicked = bs.button({text: "Hello"})
+    if (clicked) {
+      bs.text('Submitting');
+    }
+  }
+  bs.start(code);
+  _bs = bs;
+}
 export default function Home() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && _bs === null) {
+      initialize();
+    }
+  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -11,58 +34,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <main>
+        <div id="main-view">
         </div>
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
+      <footer>
       </footer>
     </div>
   )
