@@ -7,10 +7,9 @@ let _bs = null;
 const initialize = () => {
   const bs = new BrowserScript(window.document.getElementById('main-view'))
   const code = async function() {
-    bs.text("## Hello world! This is a test of my software");
+    bs.text("## Calculate your taxes!");
     const country = bs.radio("Where do you live?", ["Canada", "United States"]);
     bs.text(`Your Country: **${country ? country : ""}**`);
-    console.log(country);
     const value = bs.input(
       "Your annual income",
       {
@@ -25,12 +24,13 @@ const initialize = () => {
         defaultValue: 0,
         min: 0,
         max: 100,
-        placeholder: "Ex: 10000",
         type: "number",
       });
     if (value && taxRate) {
       bs.text(`## Your tax is: $${value * taxRate / 100}!`);
     }
+    const checked = bs.checkbox("I don't want to pay taxes")
+    bs.text(`You are checked: **${checked}**`);
     const clicked = bs.button("Submit")
     if (clicked) {
       bs.text('Submitting');
