@@ -33,6 +33,8 @@ const initialize = () => {
     const checked = bs.checkbox("I don't want to pay taxes")
     bs.text(`You are checked: **${checked}**`);
     const clicked = bs.button("Submit")
+    bs.image("https://i.imgur.com/CAcnA3e.jpeg", {width: '100', height: '100'});
+    bs.audio("http://ringelkater.de/Sounds/2geraeusche_tiere/dino_tyrannosaurus1.wav");
     const response = await axios.get("https://www.mockachino.com/e065c9e2-cd3f-4a/users");
     bs.text("Hello " + JSON.stringify(response.data));
     if (clicked) {
