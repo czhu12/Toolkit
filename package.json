@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "blueimp-md5": "^2.19.0",
     "marked": "^4.0.17",
     "next": "12.1.6",

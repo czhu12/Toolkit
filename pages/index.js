@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Head from 'next/head'
 import { useEffect, useState } from 'react';
 import BrowserScript from "../lib/core/views"
@@ -32,8 +33,11 @@ const initialize = () => {
     const checked = bs.checkbox("I don't want to pay taxes")
     bs.text(`You are checked: **${checked}**`);
     const clicked = bs.button("Submit")
+    const response = await axios.get("https://www.mockachino.com/e065c9e2-cd3f-4a/users");
+    bs.text("Hello " + JSON.stringify(response.data));
     if (clicked) {
-      bs.text('Submitting');
+      const response = await axios.post("https://www.mockachino.com/e065c9e2-cd3f-4a/users");
+      bs.text('Submitted! ' + JSON.stringify(response.data));
     }
   }
   bs.start(code);
