@@ -8,11 +8,30 @@ const initialize = () => {
   const bs = new BrowserScript(window.document.getElementById('main-view'))
   const code = async function() {
     bs.text("## Hello world! This is a test of my software");
-    const value = bs.input({defaultValue: 0, label: "Your annual income", placeholder: "Ex: 10000", type: "number"});
-    if (value) {
-      bs.text(`## Your tax is: $${value * 0.15}!`);
+    const country = bs.radio("Where do you live?", ["Canada", "United States"]);
+    bs.text(`Your Country: **${country ? country : ""}**`);
+    console.log(country);
+    const value = bs.input(
+      "Your annual income",
+      {
+        defaultValue: 0,
+        placeholder: "Ex: 10000",
+        type: "number",
+      }
+    );
+    const taxRate = bs.slider(
+      "Your Tax Rate",
+      {
+        defaultValue: 0,
+        min: 0,
+        max: 100,
+        placeholder: "Ex: 10000",
+        type: "number",
+      });
+    if (value && taxRate) {
+      bs.text(`## Your tax is: $${value * taxRate / 100}!`);
     }
-    const clicked = bs.button({text: "Hello"})
+    const clicked = bs.button("Submit")
     if (clicked) {
       bs.text('Submitting');
     }

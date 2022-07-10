@@ -14,3 +14,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.browser-script-screen > * {
+  margin: 10px;
+}
+.browser-script-screen button {
+  
+}
