@@ -34,12 +34,10 @@ const initialize = () => {
     bs.text(`You are checked: **${checked}**`);
     const clicked = bs.button("Submit")
     bs.image("https://i.imgur.com/CAcnA3e.jpeg", {width: '100', height: '100'});
+    bs.video("/examples/video.mp4", {width: '400', height: '300'});
     bs.audio("http://ringelkater.de/Sounds/2geraeusche_tiere/dino_tyrannosaurus1.wav");
-    const response = await axios.get("https://www.mockachino.com/e065c9e2-cd3f-4a/users");
-    bs.text("Hello " + JSON.stringify(response.data));
     if (clicked) {
-      const response = await axios.post("https://www.mockachino.com/e065c9e2-cd3f-4a/users");
-      bs.text('Submitted! ' + JSON.stringify(response.data));
+      bs.text('Submitted! ');
     }
   }
   bs.start(code);
