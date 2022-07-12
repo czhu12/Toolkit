@@ -3,6 +3,39 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react';
 import BrowserScript from "../lib/core/views"
 import styles from '../styles/Home.module.css'
+import { setupCache } from 'axios-cache-adapter'
+const cache = setupCache({
+  maxAge: 15 * 60 * 1000
+})
+const api = axios.create({
+  adapter: cache.adapter
+})
+
+
+const labels = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+];
+
+const data = {
+  labels: labels,
+  datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [100, 10, 5, 2, 20, 30, 45],
+  }]
+};
+
+const config = {
+  type: 'line',
+  data: data,
+  options: {responsive: false}
+};
 
 let _bs = null;
 const initialize = () => {
@@ -30,12 +63,22 @@ const initialize = () => {
     if (value && taxRate) {
       bs.text(`## Your tax is: $${value * taxRate / 100}!`);
     }
+    const response = await api.get("https://www.mockachino.com/e065c9e2-cd3f-4a/users");
+    bs.text(`Data: ${JSON.stringify(response.data)}`);
     const checked = bs.checkbox("I don't want to pay taxes")
     bs.text(`You are checked: **${checked}**`);
     const clicked = bs.button("Submit")
+    bs.code(`
+      var a = 1;
+      var b = 2;
+      console.log(a + b);
+      ${checked && 'console.log(a, b);'}
+    `, {language: 'javascript'})
     bs.image("https://i.imgur.com/CAcnA3e.jpeg", {width: '100', height: '100'});
     bs.video("/examples/video.mp4", {width: '400', height: '300'});
     bs.audio("http://ringelkater.de/Sounds/2geraeusche_tiere/dino_tyrannosaurus1.wav");
+    data.datasets[0].data[0] = parseInt(taxRate);
+    bs.chart(config, {height: '400', width: '400'});
     if (clicked) {
       bs.text('Submitted! ');
     }
