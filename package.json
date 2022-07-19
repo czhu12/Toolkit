@@ -9,14 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.9",
+    "ace-builds": "^1.7.1",
+    "ag-grid-community": "^28.0.2",
+    "apollo-client": "^2.6.10",
     "axios": "^0.27.2",
     "axios-cache-adapter": "^2.7.3",
     "blueimp-md5": "^2.19.0",
     "chart.js": "^3.8.0",
+    "graphql": "^16.5.0",
     "highlight.js": "^11.5.1",
     "marked": "^4.0.17",
     "next": "12.1.6",
     "react": "18.1.0",
+    "react-ace": "^10.1.0",
     "react-dom": "18.1.0"
   },
   "devDependencies": {

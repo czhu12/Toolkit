@@ -15,6 +15,13 @@ a {
   box-sizing: border-box;
 }
 
+.dotted-border {
+  height: 500px;
+  width: 400px;
+  border: 1px white dashed;
+  border-radius: 10px;
+}
+
 .browser-script-screen > * {
   margin: 10px;
 }
