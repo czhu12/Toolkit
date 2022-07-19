@@ -1,14 +1,35 @@
-import React from "react";
-
-const PROJECT_REPO = "https://github.com/czhu12/BrowserScript";
+import React, { useState } from "react";
+import { useMutation } from '@apollo/client';
+import { CREATE_SCRIPT } from '../lib/api/definitions';
+import dynamic from 'next/dynamic'
+const Editor = dynamic(import('../lib/editor'), {ssr: false})
 
 function IndexPage() {
+  const [mutateFunction, { d, l, e }] = useMutation(CREATE_SCRIPT);
+  const [code, setCode] = useState("");
+  const createScript = async () => {
+    const result = await mutateFunction({
+      variables: {
+        input: {
+          attributes: {
+            title: "Untitled",
+            visibility: "public",
+            code: code,
+            description: "",
+          },
+        }
+      }
+    });
+    if (result.data.createScript.errors) {
+      window.location.href = `/s/${result.data.createScript.script.slug}`;
+    }
+  }
   return (
     <div>
       <nav className="navbar py-4">
         <div className="container is-fluid">
           <div className="navbar-brand">
-            <a class="navbar-item" href="/">
+            <a className="navbar-item" href="/">
               <svg style={{width:'24px',height:'24px'}} className="mr-3" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2Z" />
               </svg>
@@ -21,7 +42,7 @@ function IndexPage() {
             </a>
             <div className="navbar-menu">
               <div className="navbar-start">
-                <a class="navbar-item" href="#about">About</a>
+                <a className="navbar-item" href="#about">About</a>
               </div>
             </div>
           </div>
@@ -44,16 +65,24 @@ function IndexPage() {
       <section className="section has-background-info" id="try-now">
         <div className="container">
           <div className="columns">
-            <div className="column title is-size-3 has-text-white">
+            <div className="column">
+              <div className="title is-size-3 has-text-white">Edit the code here.</div>
               <div>
-                TODO: Editor goes here
+                {typeof window !== "undefined" && (
+                  <Editor code={code} setCode={setCode} />
+                )}
               </div>
-              <button class="button is-primary">Run</button>
+              <button onClick={() => {
+                window.__bs_run(code);
+              }} className="button is-primary">Run</button>
+              <button className="button" onClick={createScript}>
+                Save
+              </button>
             </div>
             <div className="column">
               <div className="title is-size-3 has-text-white">Your app shows up here.</div>
               <div id="main-view">
-                <div className="dotted-border"></div>
+                <div id="temporary-id" className="dotted-border"></div>
               </div>
             </div>
           </div>

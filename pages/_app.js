@@ -10,7 +10,6 @@ if (typeof window !== "undefined") {
     const bs = new BrowserScript(document.getElementById('main-view'));
     bs.start(async function() {
       const runnable = `async (bs) => {${code}}`
-      console.log(runnable);
       return eval(runnable)(bs);
     });
   }

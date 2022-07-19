@@ -58,6 +58,9 @@ const initialize = () => {
     bs.text(`Current Time: ${time}`);
     const country = bs.radio("Where do you live?", ["Canada", "United States"]);
     bs.text(`Your Country: ${country ? country : ""}`);
+    if (bs.button("Click here to show stuff")) {
+      bs.text("Hello world!");
+    }
     const value = bs.input(
       "Your annual income",
       {

@@ -1,50 +1,30 @@
-import { gql, useQuery, useMutation } from '@apollo/client';
-import dynamic from 'next/dynamic'
-const Editor = dynamic(import('../../lib/editor'), {ssr: false})
+import { useQuery, useMutation } from '@apollo/client';
+import App from "../../lib/editor/app"
+import { GET_SCRIPT } from '../../lib/api/definitions';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-const GET_SCRIPT = gql`
-  query {
-    script(id: "Script-1") {
-      title
-      visibility
-      runCount
-      description
-      id
-      code
+function RunScript() {
+  const router = useRouter();
+  const { loading, error, data } = useQuery(GET_SCRIPT, {
+    variables: {
+      slug: router.query.slug,
     }
-  }
-`;
-
-const UPDATE_SCRIPT = gql`
-  mutation UpdateScript($data: updateScriptInput!) {
-    updateScript(input: $data) {
-      script {
-        title
-        code
-        runCount
-      }
+  });
+  useEffect(() => {
+    if (data?.script) {
+      window.__bs_run(data.script.code);
     }
-  }
-`;
-
-function DisplayApplication() {
-  const { loading, error, data } = useQuery(GET_SCRIPT);
-  const [mutateFunction, { d, l, e }] = useMutation(UPDATE_SCRIPT);
-  const saveScript = (attributes) => {
-    mutateFunction({
-      data: {
-        attributes: attributes
-      }
-    });
-  }
+  }, [loading]);
 
   return <div>
     {
       typeof window !== "undefined" &&
-      data?.script?.code &&
-      <Editor initialCode={data.script.code} saveScript={saveScript} />
+      data?.script &&
+      <div id="main-view">
+      </div>
     }
   </div>
 }
 
-export default DisplayApplication
+export default RunScript
