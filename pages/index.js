@@ -1,11 +1,38 @@
 import React, { useState } from "react";
-import { useMutation } from '@apollo/client';
-import { CREATE_SCRIPT } from '../lib/api/definitions';
+import chunk from "lodash/chunk";
+import { useMutation, useQuery } from '@apollo/client';
+import { CREATE_SCRIPT, GET_POPULAR_SCRIPTS } from '../lib/api/definitions';
 import dynamic from 'next/dynamic'
-const Editor = dynamic(import('../lib/editor'), {ssr: false})
+import ActionBar from "../lib/components/editor/action_bar";
+import ScriptCard from "../lib/components/landing_page/script_card";
+const Editor = dynamic(import('../lib/components/editor'), {ssr: false})
+
+const POPULAR_SCRIPTS = [
+  {
+    title: "Universal Converter",
+    slug: "12345",
+    description: "Convert an image into any other format!",
+  },
+  {
+    title: "Bionic Reading Converter",
+    slug: "12346",
+    description: "Turn your ebooks into bionic readers!",
+  },
+  {
+    title: "Github Cover Photo",
+    slug: "12347",
+    description: "Show off your Github!",
+  },
+  {
+    title: "Mugshot Bot",
+    slug: "12348",
+    description: "Generate a mugshot of your blog post.",
+  },
+];
 
 function IndexPage() {
   const [mutateFunction, { d, l, e }] = useMutation(CREATE_SCRIPT);
+  const { loading, error, data } = useQuery(GET_POPULAR_SCRIPTS);
   const [code, setCode] = useState("");
   const createScript = async () => {
     const result = await mutateFunction({
@@ -30,10 +57,11 @@ function IndexPage() {
         <div className="container is-fluid">
           <div className="navbar-brand">
             <a className="navbar-item" href="/">
-              <svg style={{width:'24px',height:'24px'}} className="mr-3" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M4,2H20A2,2 0 0,1 22,4V16A2,2 0 0,1 20,18H16L12,22L8,18H4A2,2 0 0,1 2,16V4A2,2 0 0,1 4,2Z" />
-              </svg>
-              <div className="has-text-weight-bold is-size-5">Tooltip</div>
+              <figure className="image is-24x24">
+                <img src="/logos/tooltip-purple.png" />
+              </figure>
+
+              <div className="has-text-weight-bold is-size-5 has-color-purple ml-3">Tooltip</div>
             </a>
             <a className="navbar-burger" role="button" aria-label="menu" aria-expanded="false">
               <span aria-hidden="true"></span>
@@ -50,13 +78,16 @@ function IndexPage() {
       </nav>
       <section className="section">
         <div className="container">
-          <div className="my-6 py-3 columns is-multiline">
+          <div className="my-3 py-3 columns is-multiline">
             <div className="column is-12 is-6-desktop">
-              <h1 className="mb-4 is-size-1 is-size-3-mobile has-text-weight-bold">A Faster Way to Build and Share Apps</h1>
-              <h5 className="subtitle has-text-grey mb-5">We turn your scripts into full blown apps. No HTML or CSS required.</h5>
-              <a className="button is-info is-large" href="#try-now">
+              <h1 className="mb-4 is-size-1 is-size-3-mobile has-text-weight-bold" style={{lineHeight: '1.2em'}}>A Faster Way to Build and Share Apps</h1>
+              <h5 className="subtitle has-text-grey my-4">We turn your scripts into full blown apps. No HTML or CSS required.</h5>
+              <a className="button is-info is-large is-size-5" href="#try-now">
                 Try Now
               </a>
+              <div className="mt-3 subtitle is-size-7">
+                No account needed.
+              </div>
             </div>
             <div className="column is-12 is-6-desktop"></div>
           </div>
@@ -72,12 +103,9 @@ function IndexPage() {
                   <Editor code={code} setCode={setCode} />
                 )}
               </div>
-              <button onClick={() => {
+              <ActionBar onSave={createScript} onRun={() => {
                 window.__bs_run(code);
-              }} className="button is-primary">Run</button>
-              <button className="button" onClick={createScript}>
-                Save
-              </button>
+              }} />
             </div>
             <div className="column">
               <div className="title is-size-3 has-text-white">Your app shows up here.</div>
@@ -92,7 +120,35 @@ function IndexPage() {
         <div className="container">
           <div className="columns">
             <div className="column title is-size-1">
-              How does it work?
+              A gallery of popular apps
+            </div>
+          </div>
+            {chunk(POPULAR_SCRIPTS, 2).map((scripts) => {
+              const s1 = scripts[0];
+              const s2 = scripts[1];
+              return (
+                <div className="columns is-desktop">
+                  <div className="column">
+                    <ScriptCard script={s1} />
+                  </div>
+                  <div className="column">
+                    <ScriptCard script={s2} />
+                  </div>
+                </div>
+              );
+            })}
+        </div>
+      </section>
+      <section className="section">
+        <div className="container">
+          <div className="columns">
+            <div className="column">
+              <div className="title is-size-1">
+                Build beautiful applications, no frontend skills needed.
+              </div>
+              <div className="subtitle is-size-3">
+                Build beautiful applications, no frontend skills needed.
+              </div>
             </div>
           </div>
         </div>
@@ -100,9 +156,7 @@ function IndexPage() {
       <footer className="footer">
         <div className="content has-text-centered">
           <p>
-            <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+            Hello world!
           </p>
         </div>
       </footer>

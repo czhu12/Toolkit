@@ -1,5 +1,4 @@
-import { useQuery, useMutation } from '@apollo/client';
-import App from "../../lib/editor/app"
+import { useQuery } from '@apollo/client';
 import { GET_SCRIPT } from '../../lib/api/definitions';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -18,10 +17,23 @@ function RunScript() {
   }, [loading]);
 
   return <div>
+    <nav className="navbar">
+      <div className="navbar-menu">
+        <div className="navbar-end">
+          <a className="navbar-item">
+            Home
+          </a>
+        </div>
+      </div>
+    </nav>
     {
       typeof window !== "undefined" &&
       data?.script &&
-      <div id="main-view">
+      <div>
+        <div className="container">
+          <div id="main-view">
+          </div>
+        </div>
       </div>
     }
   </div>

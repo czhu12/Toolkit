@@ -17,9 +17,12 @@ a {
 
 .dotted-border {
   height: 500px;
-  width: 400px;
   border: 1px white dashed;
   border-radius: 10px;
+}
+
+.has-text-purple {
+  color: var(--purple);
 }
 
 .browser-script-screen > * {
