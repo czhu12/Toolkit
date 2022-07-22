@@ -78,6 +78,12 @@ const initialize = () => {
       ctx.lineTo(taxRate, taxRate);
       ctx.stroke();
     }, {height: 300, width: 300});
+    const colorSelected = bs.colorPicker("Pick a color!");
+    const webcam = bs.webcam();
+    if (webcam) {
+      bs.image(webcam);
+    }
+    bs.text("Color selected " + colorSelected);
     bs.downloadButton("Download", "image.png", dataURL);
     if (value && taxRate) {
       bs.text(`## Your tax is: $${value * taxRate / 100}!`);
