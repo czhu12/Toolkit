@@ -12,10 +12,6 @@ const api = axios.create({
   adapter: cache.adapter
 })
 
-function timeout(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 const labels = [
   'January',
   'February',
@@ -50,7 +46,6 @@ const initialize = () => {
     if (file) {
       bs.text(`file.name: ${JSON.parse(file)['name']}`);
     }
-    console.log(file);
     bs.iframe("https://www.youtube.com/embed/dXBohfjc4WA")
     const date = bs.dateInput("What is the current time?")
     bs.text(`Current Date: ${date}`);
@@ -61,6 +56,18 @@ const initialize = () => {
     if (bs.button("Click here to show stuff")) {
       bs.text("Hello world!");
     }
+    const draw = (ctx) => {
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      if (country === "Canada") {
+        ctx.lineTo(300, 150);
+      } else {
+        ctx.lineTo(150, 300);
+      }
+      ctx.stroke();
+    }
+    bs.canvas(draw, {height: 300, width: 300});
+    console.log(file);
     const value = bs.input(
       "Your annual income",
       {
