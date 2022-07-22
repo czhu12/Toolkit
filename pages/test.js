@@ -42,9 +42,9 @@ const initialize = () => {
   const bs = new BrowserScript(window.document.getElementById('main-view'))
   const code = async function() {
     bs.text("## Calculate your taxes!");
-    const file = bs.fileInput("Upload your CSV");
+    const file = bs.fileInput("Upload your Image", {as: 'image'});
     if (file) {
-      bs.text(`file.name: ${JSON.parse(file)['name']}`);
+      bs.image(file, {width: 100, height: 'auto'});
     }
     bs.iframe("https://www.youtube.com/embed/dXBohfjc4WA")
     const date = bs.dateInput("What is the current time?")
@@ -72,13 +72,13 @@ const initialize = () => {
         max: 100,
         type: "number",
       });
-    bs.canvas((ctx) => {
+    const dataURL = bs.canvas((ctx) => {
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.lineTo(taxRate, taxRate);
       ctx.stroke();
     }, {height: 300, width: 300});
-    console.log(file);
+    bs.downloadButton("Download", "image.png", dataURL);
     if (value && taxRate) {
       bs.text(`## Your tax is: $${value * taxRate / 100}!`);
     }
