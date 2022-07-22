@@ -56,18 +56,6 @@ const initialize = () => {
     if (bs.button("Click here to show stuff")) {
       bs.text("Hello world!");
     }
-    const draw = (ctx) => {
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      if (country === "Canada") {
-        ctx.lineTo(300, 150);
-      } else {
-        ctx.lineTo(150, 300);
-      }
-      ctx.stroke();
-    }
-    bs.canvas(draw, {height: 300, width: 300});
-    console.log(file);
     const value = bs.input(
       "Your annual income",
       {
@@ -84,6 +72,13 @@ const initialize = () => {
         max: 100,
         type: "number",
       });
+    bs.canvas((ctx) => {
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(taxRate, taxRate);
+      ctx.stroke();
+    }, {height: 300, width: 300});
+    console.log(file);
     if (value && taxRate) {
       bs.text(`## Your tax is: $${value * taxRate / 100}!`);
     }
