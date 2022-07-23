@@ -1,0 +1,64 @@
+.browser-script-screen > * {
+  margin: 10px;
+}
+.browser-script-screen button {
+}
+.browser-script-screen .bs--fileinput label {
+  display: block;
+}
+
+.browser-script-screen .bs--dateinput label {
+  display: block;
+}
+
+.browser-script-screen .bs--timeinput label {
+  display: block;
+}
+
+.browser-script-screen .bs--radio label:first-of-type {
+  display: block;
+}
+
+.browser-script-screen .bs--radio label {
+  margin-right: 20px;
+}
+
+.browser-script-screen .bs--radio input {
+  margin-right: 5px;
+}
+
+.browser-script-screen .bs--input label {
+  display: block;
+}
+
+.browser-script-screen .bs--slider label {
+  display: block;
+}
+
+.browser-script-screen .bs--colorinput label {
+  display: block;
+}
+
+.browser-script-screen .bs--checkbox label {
+  margin-right: 5px;
+}
+
+.browser-script-screen .bs--button {
+  display: block;
+}
+
+.browser-script-screen .bs--imageitem {
+  display: block;
+}
+
+.browser-script-screen .bs--videoitem {
+  display: block;
+}
+
+.browser-script-screen .bs--audioitem {
+  display: block;
+}
+
+.browser-script-screen .bs--canvas {
+  border: 1px solid black;
+}

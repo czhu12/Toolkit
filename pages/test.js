@@ -126,7 +126,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className="container">
         <div id="main-view">
         </div>
       </main>

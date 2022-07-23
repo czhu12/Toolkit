@@ -24,10 +24,3 @@ a {
 .has-text-purple {
   color: var(--purple);
 }
-
-.browser-script-screen > * {
-  margin: 10px;
-}
-.browser-script-screen button {
-  
-}
