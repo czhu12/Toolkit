@@ -7,8 +7,20 @@ import ActionBar from "../lib/components/editor/action_bar";
 import ScriptCard from "../lib/components/landing_page/script_card";
 const Editor = dynamic(import('../lib/components/editor'), {ssr: false})
 const DEFAULT_CODE = `import jspdf from "https://cdn.skypack.dev/jspdf";
-bs.text("# This is the best thing ever");
-bs.button("Hello world");
+
+bs.text(\`# PDF generator\`);
+
+const name = bs.input("Your Name");
+
+if (bs.button("Generate")) {
+  const doc = new jspdf();
+  const image = new Image();
+  image.src = "/images/harvard_diploma.png";
+  await doc.addImage(image, "png", 0, 0, 200, 150);
+
+  doc.text(name, 85, 80);
+  doc.save("diploma.pdf");
+}
 `;
 const POPULAR_SCRIPTS = [
   {
