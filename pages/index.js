@@ -62,8 +62,8 @@ function IndexPage() {
         }
       }
     });
-    if (result.data.createScript.errors) {
-      window.location.href = `/s/${result.data.createScript.script.slug}`;
+    if (!result.data.createScript.errors) {
+      window.location.href = `/s/${result.data.createScript.script.slug}?first=1`;
     }
   }
   return (
