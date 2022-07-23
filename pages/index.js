@@ -6,7 +6,10 @@ import dynamic from 'next/dynamic'
 import ActionBar from "../lib/components/editor/action_bar";
 import ScriptCard from "../lib/components/landing_page/script_card";
 const Editor = dynamic(import('../lib/components/editor'), {ssr: false})
-
+const DEFAULT_CODE = `import jspdf from "https://cdn.skypack.dev/jspdf";
+bs.text("# This is the best thing ever");
+bs.button("Hello world");
+`;
 const POPULAR_SCRIPTS = [
   {
     title: "Universal Converter",
@@ -33,7 +36,7 @@ const POPULAR_SCRIPTS = [
 function IndexPage() {
   const [mutateFunction, { d, l, e }] = useMutation(CREATE_SCRIPT);
   const { loading, error, data } = useQuery(GET_POPULAR_SCRIPTS);
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState(DEFAULT_CODE);
   const createScript = async () => {
     const result = await mutateFunction({
       variables: {
@@ -93,7 +96,7 @@ function IndexPage() {
           </div>
         </div>
       </section>
-      <section className="section has-background-info" id="try-now">
+      <section className="section" id="try-now">
         <div className="container">
           <div className="columns">
             <div className="column">

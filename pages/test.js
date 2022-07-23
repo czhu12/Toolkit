@@ -130,7 +130,6 @@ export default function Home() {
         <div id="main-view">
         </div>
       </main>
-
       <footer>
       </footer>
     </div>

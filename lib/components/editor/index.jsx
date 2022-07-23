@@ -11,6 +11,7 @@ function Editor({code, setCode}) {
       width="100%"
       mode="rust"
       theme="chaos"
+      fontSize="1em"
       value={code}
       onChange={(v) => {
         setCode(v);
