@@ -80,7 +80,7 @@ function IndexPage() {
       }
     });
     if (!result.data.createScript.errors) {
-      window.location.href = `/s/${result.data.createScript.script.slug}?first=1`;
+      window.location.href = `/s/${result.data.createScript.script.slug}?first=1&created=true`;
     }
   }
   return (
