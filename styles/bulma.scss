@@ -1,0 +1,8 @@
+@import "bulma/sass/utilities/initial-variables";
+@import "bulma/sass/utilities/functions";
+
+.thin-container {
+  max-width: 768px !important;
+}
+
+@import "bulma/bulma.sass";

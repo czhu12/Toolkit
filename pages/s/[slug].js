@@ -66,7 +66,7 @@ function RunScript({data, initialShowModal}) {
             script={data.script}
           />
           <NewModal show={showModal} setShow={setShowModal} />
-          <div className="container">
+          <div className="thin-container container">
             <div id="main-view">
             </div>
           </div>
