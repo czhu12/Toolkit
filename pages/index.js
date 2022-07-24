@@ -193,8 +193,8 @@ function IndexPage() {
           </div>
         </div>
       </section>
-      <footer className="footer my-5">
-        <div className="content container">
+      <footer className="footer">
+        <div className="content container my-5">
           <div className="columns">
             <div className="column">
               <span className="title is-5">Tooltip</span>

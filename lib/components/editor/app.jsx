@@ -6,6 +6,7 @@ const Editor = dynamic(import('./index'), {ssr: false})
 function App({initialScript, saveScript}) {
   const [script, setScript] = useState(initialScript);
   const run = () => {
+    saveScript(script);
     window.__bs_run(script.code);
   }
 
