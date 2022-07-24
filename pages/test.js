@@ -107,7 +107,6 @@ const initialize = () => {
     bs.audio("http://ringelkater.de/Sounds/2geraeusche_tiere/dino_tyrannosaurus1.wav");
     data.datasets[0].data[0] = parseInt(taxRate);
     bs.chart(config, {height: '400', width: '400'});
-
   }
   bs.start(code);
   _bs = bs;

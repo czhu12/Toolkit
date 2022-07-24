@@ -1,57 +1,79 @@
-import { useQuery } from '@apollo/client';
 import { GET_SCRIPT } from '../../lib/api/definitions';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import NewModal from '../../lib/components/runner/NewModal';
 import JSConfetti from 'js-confetti'
+import Head from 'next/head';
+import client from '../../apollo-client';
+import EditModal from '../../lib/components/editor/EditModal';
 
-function RunScript() {
-  const router = useRouter();
-  const { loading, error, data } = useQuery(GET_SCRIPT, {
+export async function getServerSideProps({query}) {
+  const response = await client.query({
+    query: GET_SCRIPT,
     variables: {
-      slug: router.query.slug,
-    }
+      slug: query.slug,
+    },
   });
-  let params;
-  if (typeof window !== "undefined") {
-    params = new URLSearchParams(window.location.search);
-  } else {
-    params = new URLSearchParams();
+
+  return {
+    props: {
+      data: response.data, // will be passed to the page component as props
+      initialShowModal: !!query.created,
+    }
   }
-  const [showModal, setShowModal] = useState(!!params.get("created"));
+}
+
+function RunScript({data, initialShowModal}) {
+  const [showModal, setShowModal] = useState(initialShowModal);
+  const [showEditModal, setShowEditModal] = useState(false);
   useEffect(() => {
     const jsConfetti = new JSConfetti();
     jsConfetti.addConfetti();
   }, []);
   useEffect(() => {
-    if (data?.script) {
-      window.__bs_run(data.script.code);
-    }
+    window.__bs_run(data.script.code);
+  }, []);
 
-  }, [loading]);
-
-  return <div>
-    <nav className="navbar">
-      <div className="navbar-menu">
-        <div className="navbar-end">
-          <a className="navbar-item">
-            Home
+  return (
+    <div>
+      <Head>
+        <title>{data.script.title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={data.script.description}/>
+      </Head>
+      <nav className="navbar">
+        <div class="navbar-brand">
+          <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-items">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
           </a>
         </div>
-      </div>
-    </nav>
-    {
-      typeof window !== "undefined" &&
-      data?.script &&
-      <div>
-        <NewModal show={showModal} setShow={setShowModal} />
-        <div className="container">
-          <div id="main-view">
+        <div className="navbar-menu" id="navbar-items">
+          <div className="navbar-end">
+            <a className="navbar-item" onClick={() => setShowEditModal(true)}>
+              Edit
+            </a>
           </div>
         </div>
-      </div>
-    }
-  </div>
+
+      </nav>
+      {
+        data?.script &&
+        <div>
+          <EditModal
+            show={showEditModal}
+            setShow={setShowEditModal}
+            script={data.script}
+          />
+          <NewModal show={showModal} setShow={setShowModal} />
+          <div className="container">
+            <div id="main-view">
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  )
 }
 
 export default RunScript
