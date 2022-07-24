@@ -2,7 +2,8 @@ import { ApolloProvider } from "@apollo/client";
 import client from "../apollo-client";
 import BrowserScript from "../lib/core/views";
 
-import '../styles/globals.css'
+import '../styles/bulma.scss'
+import '../styles/globals.scss'
 import '../styles/core.css'
 import 'highlight.js/styles/github.css';
 

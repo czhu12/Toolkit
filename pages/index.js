@@ -3,8 +3,9 @@ import chunk from "lodash/chunk";
 import { useMutation, useQuery } from '@apollo/client';
 import { CREATE_SCRIPT, GET_POPULAR_SCRIPTS } from '../lib/api/definitions';
 import dynamic from 'next/dynamic'
-import ActionBar from "../lib/components/editor/action_bar";
-import ScriptCard from "../lib/components/landing_page/script_card";
+import ActionBar from "../lib/components/editor/ActionBar";
+import ScriptCard from "../lib/components/landing_page/ScriptCard";
+import Head from "next/head";
 const Editor = dynamic(import('../lib/components/editor'), {ssr: false})
 const DEFAULT_CODE = `import jspdf from "https://cdn.skypack.dev/jspdf";
 
@@ -27,21 +28,37 @@ const POPULAR_SCRIPTS = [
     title: "Universal Converter",
     slug: "12345",
     description: "Convert an image into any other format!",
+    user: {
+      username: "czhu12",
+      personal_website: "https://github.com/czhu12"
+    },
   },
   {
     title: "Bionic Reading Converter",
     slug: "12346",
     description: "Turn your ebooks into bionic readers!",
+    user: {
+      username: "czhu12",
+      personal_website: "https://github.com/czhu12"
+    },
   },
   {
     title: "Github Cover Photo",
     slug: "12347",
     description: "Show off your Github!",
+    user: {
+      username: "czhu12",
+      personal_website: "https://github.com/czhu12"
+    },
   },
   {
     title: "Mugshot Bot",
     slug: "12348",
     description: "Generate a mugshot of your blog post.",
+    user: {
+      username: "czhu12",
+      personal_website: "https://github.com/czhu12"
+    },
   },
 ];
 
@@ -68,6 +85,14 @@ function IndexPage() {
   }
   return (
     <div>
+      <Head>
+        <title>Tooltip, the easiest way to build and share apps.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+          content="Tooltip is the easiest way to build and share interactive apps, no frontend experience required."
+          name="description"
+        />
+      </Head>
       <nav className="navbar py-4">
         <div className="container is-fluid">
           <div className="navbar-brand">
@@ -98,7 +123,7 @@ function IndexPage() {
               <h1 className="mb-4 is-size-1 is-size-3-mobile has-text-weight-bold" style={{lineHeight: '1.2em'}}>A Faster Way to Build and Share Apps</h1>
               <h5 className="subtitle has-text-grey my-4">We turn your scripts into full blown apps. No HTML or CSS required.</h5>
               <a className="button is-info is-large is-size-5" href="#try-now">
-                Try Now
+                Try Tooltip Now
               </a>
               <div className="mt-3 subtitle is-size-7">
                 No account needed.
@@ -168,11 +193,22 @@ function IndexPage() {
           </div>
         </div>
       </section>
-      <footer className="footer">
-        <div className="content has-text-centered">
-          <p>
-            Hello world!
-          </p>
+      <footer className="footer my-5">
+        <div className="content container">
+          <div className="columns">
+            <div className="column">
+              <span className="title is-5">Tooltip</span>
+            </div>
+            <div className="column">
+              <span className="title is-5">Documentation</span>
+            </div>
+            <div className="column">
+              <span className="title is-5">Social</span>
+              <p>
+                <a href="https://github.com/czhu12/tooltip" target="_blank"><i className="fa-brands fa-github"></i></a>
+              </p>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
