@@ -64,7 +64,8 @@ const POPULAR_SCRIPTS = [
 
 function IndexPage() {
   const [mutateFunction, { d, l, e }] = useMutation(CREATE_SCRIPT);
-  const { loading, error, data } = useQuery(GET_POPULAR_SCRIPTS);
+  const { loading, error, data } = useQuery(GET_POPULAR_SCRIPTS, {variables: {page: 1}});
+  console.log(data);
   const [code, setCode] = useState(DEFAULT_CODE);
   const createScript = async () => {
     const result = await mutateFunction({
@@ -163,11 +164,11 @@ function IndexPage() {
               A gallery of popular apps
             </div>
           </div>
-            {chunk(POPULAR_SCRIPTS, 2).map((scripts) => {
+            {chunk(data.scripts, 2).map((scripts, idx) => {
               const s1 = scripts[0];
               const s2 = scripts[1];
               return (
-                <div className="columns is-desktop">
+                <div key={`gallery-${idx}`} className="columns is-desktop">
                   <div className="column">
                     <ScriptCard script={s1} />
                   </div>

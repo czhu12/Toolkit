@@ -19,6 +19,7 @@
     "blueimp-md5": "^2.19.0",
     "bulma": "^0.9.4",
     "chart.js": "^3.8.0",
+    "dotenv": "^16.0.1",
     "graphql": "^16.5.0",
     "highlight.js": "^11.5.1",
     "js-confetti": "^0.10.2",
