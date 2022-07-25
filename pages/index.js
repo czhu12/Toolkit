@@ -23,44 +23,6 @@ if (bs.button("Generate")) {
   doc.save("diploma.pdf");
 }
 `;
-const POPULAR_SCRIPTS = [
-  {
-    title: "Universal Converter",
-    slug: "12345",
-    description: "Convert an image into any other format!",
-    user: {
-      username: "czhu12",
-      personal_website: "https://github.com/czhu12"
-    },
-  },
-  {
-    title: "Bionic Reading Converter",
-    slug: "12346",
-    description: "Turn your ebooks into bionic readers!",
-    user: {
-      username: "czhu12",
-      personal_website: "https://github.com/czhu12"
-    },
-  },
-  {
-    title: "Github Cover Photo",
-    slug: "12347",
-    description: "Show off your Github!",
-    user: {
-      username: "czhu12",
-      personal_website: "https://github.com/czhu12"
-    },
-  },
-  {
-    title: "Mugshot Bot",
-    slug: "12348",
-    description: "Generate a mugshot of your blog post.",
-    user: {
-      username: "czhu12",
-      personal_website: "https://github.com/czhu12"
-    },
-  },
-];
 
 function IndexPage() {
   const [mutateFunction, { d, l, e }] = useMutation(CREATE_SCRIPT);
@@ -109,9 +71,22 @@ function IndexPage() {
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
             </a>
-            <div className="navbar-menu">
-              <div className="navbar-start">
-                <a className="navbar-item" href="#about">About</a>
+
+          </div>
+          <div className="navbar-menu">
+            <div className="navbar-start">
+              <a className="navbar-item" href="#about">About</a>
+            </div>
+          </div>
+          <div className="navbar-end">
+            <div className="navbar-item">
+              <div className="buttons">
+                <a href="/sign_up" className="button is-primary">
+                  <strong>Sign up</strong>
+                </a>
+                <a href="/log_in" className="button is-light">
+                  Log in
+                </a>
               </div>
             </div>
           </div>
@@ -164,7 +139,7 @@ function IndexPage() {
               A gallery of popular apps
             </div>
           </div>
-            {chunk(data.scripts, 2).map((scripts, idx) => {
+            {chunk(data?.scripts || [], 2).map((scripts, idx) => {
               const s1 = scripts[0];
               const s2 = scripts[1];
               return (
