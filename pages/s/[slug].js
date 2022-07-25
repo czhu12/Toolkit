@@ -25,6 +25,7 @@ export async function getServerSideProps({query}) {
 function RunScript({data, initialShowModal}) {
   const [showModal, setShowModal] = useState(initialShowModal);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(false);
   useEffect(() => {
     const jsConfetti = new JSConfetti();
     jsConfetti.addConfetti();
@@ -42,13 +43,20 @@ function RunScript({data, initialShowModal}) {
       </Head>
       <nav className="navbar">
         <div class="navbar-brand">
-          <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-items">
+          <a
+            role="button"
+            className="navbar-burger"
+            aria-label="menu"
+            aria-expanded="false"
+            data-target="navbar-items"
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
-        <div className="navbar-menu" id="navbar-items">
+        <div className={`navbar-menu ${navbarOpen && 'is-active'}`} id="navbar-items">
           <div className="navbar-end">
             <a className="navbar-item" onClick={() => setShowEditModal(true)}>
               Edit
