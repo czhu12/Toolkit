@@ -2,6 +2,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import App from "../../../lib/components/editor/app";
 import {GET_SCRIPT, UPDATE_SCRIPT} from '../../../lib/api/definitions';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 function EditScript() {
   const router = useRouter();
@@ -32,7 +33,10 @@ function EditScript() {
     {
       typeof window !== "undefined" &&
       data?.script &&
-      <App initialScript={data.script} saveScript={saveScript} />
+      <App
+        initialScript={data.script}
+        saveScript={saveScript}
+      />
     }
   </div>
 }

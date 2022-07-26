@@ -24,7 +24,6 @@ export async function getServerSideProps({query}) {
 
 function RunScript({data, initialShowModal}) {
   const [showModal, setShowModal] = useState(initialShowModal);
-  const [showEditModal, setShowEditModal] = useState(false);
   const [navbarOpen, setNavbarOpen] = useState(false);
   useEffect(() => {
     const jsConfetti = new JSConfetti();
@@ -58,7 +57,7 @@ function RunScript({data, initialShowModal}) {
         </div>
         <div className={`navbar-menu ${navbarOpen && 'is-active'}`} id="navbar-items">
           <div className="navbar-end">
-            <a className="navbar-item" onClick={() => setShowEditModal(true)}>
+            <a className="navbar-item" href={`/s/${data.script.slug}/edit`}>
               Edit
             </a>
           </div>
@@ -68,11 +67,6 @@ function RunScript({data, initialShowModal}) {
       {
         data?.script &&
         <div>
-          <EditModal
-            show={showEditModal}
-            setShow={setShowEditModal}
-            script={data.script}
-          />
           <NewModal show={showModal} setShow={setShowModal} />
           <div className="thin-container container">
             <div id="main-view">
