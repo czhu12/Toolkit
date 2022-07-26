@@ -1,7 +1,28 @@
 .browser-script-screen > * {
-  margin: 10px;
+  margin: 20px 0;
 }
-.browser-script-screen button {
+
+.browser-script-screen .pointer {
+  cursor: pointer;
+}
+
+.browser-script-screen label {
+  margin-bottom: 5px;
+}
+
+.browser-script-screen pre {
+  background-color: transparent;
+  padding: 0 !important;
+}
+
+.browser-script-screen pre code {
+  padding: 0 !important;
+}
+
+.browser-script-screen .bs--code .copy-bar {
+  text-align: right;
+  font-size: 1.5em;
+  color: #34495e;
 }
 
 .browser-script-screen .bs--fileinput label {
@@ -20,14 +41,6 @@
   display: block;
 }
 
-.browser-script-screen .bs--radio label:first-of-type {
-  display: block;
-}
-
-.browser-script-screen .bs--radio label {
-  margin-right: 20px;
-}
-
 .browser-script-screen .bs--radio input {
   margin-right: 5px;
 }
@@ -43,6 +56,23 @@
 .browser-script-screen .bs--colorinput label {
   display: block;
 }
+
+.browser-script-screen .bs--colorinput input[type="color"] {
+	-webkit-appearance: none;
+	border: none;
+  background-color: transparent;
+	width: 32px;
+	height: 32px;
+}
+.browser-script-screen .bs--colorinput input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+  border-radius: 8px;
+}
+.browser-script-screen .bs--colorinput input[type="color"]::-webkit-color-swatch {
+	border: none;
+  border-radius: 8px;
+}
+
 
 .browser-script-screen .bs--checkbox label {
   margin-right: 5px;
@@ -65,5 +95,6 @@
 }
 
 .browser-script-screen .bs--canvas {
-  border: 1px solid black;
+  border: 1px solid #95a5a6;
+  border-radius: 5px;
 }
