@@ -92,6 +92,7 @@ const initialize = () => {
     bs.text(`Data: ${JSON.stringify(response.data)}`);
     const checked = bs.checkbox("I don't want to pay taxes")
     bs.text(`You are checked: **${checked}**`);
+    bs.downloadButton("Hello world", "filename.png", "");
     const clicked = bs.button("Submit")
     if (clicked) {
       bs.text('Submitted! ');
