@@ -81,10 +81,10 @@ function IndexPage() {
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="buttons">
-                  <a href="/sign_up" className="button is-primary">
+                  <a href="/accounts/sign_up" className="button is-primary">
                     <strong>Sign up</strong>
                   </a>
-                  <a href="/log_in" className="button is-light">
+                  <a href="/accounts/login" className="button is-light">
                     Log in
                   </a>
                 </div>
