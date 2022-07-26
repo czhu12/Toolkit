@@ -8,6 +8,10 @@
   display: block;
 }
 
+.browser-script-screen .bs--fileinput .file-label {
+  min-width: 80px;
+}
+
 .browser-script-screen .bs--dateinput label {
   display: block;
 }
