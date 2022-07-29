@@ -95,18 +95,18 @@ function IndexPage() {
       <section className="section">
         <div className="container">
           <div className="my-3 py-3 columns is-multiline">
-            <div className="column is-12 is-6-desktop">
-              <h1 className="mb-4 is-size-1 is-size-3-mobile has-text-weight-bold" style={{lineHeight: '1.2em'}}>A Faster Way to Build and Share Apps</h1>
-              <h5 className="subtitle has-text-grey my-4">We turn your scripts into full blown apps. No HTML or CSS required.</h5>
-              <a className="button is-info is-large is-size-5" href="#try-now">
+            <div className="column is-12 is-5-desktop">
+              <h1 className="mb-5 is-size-1 is-size-3-mobile has-text-weight-bold" style={{lineHeight: '1.2em'}}>A Faster Way to Build and Share Apps</h1>
+              <h5 className="subtitle has-text-grey my-5">We turn your scripts into full blown apps. No HTML or CSS required.</h5>
+              <a className="button is-info is-large my-5 is-size-5" href="#try-now">
                 Try Tooltip Now
               </a>
               <div className="mt-3 subtitle is-size-7">
                 No account needed.
               </div>
             </div>
-            <div className="column is-12 is-6-desktop">
-              <img src="/images/image2pdf.png" />
+            <div className="column is-12 is-7-desktop">
+              <img src="/images/screenshot-with-code.png" />
             </div>
           </div>
         </div>

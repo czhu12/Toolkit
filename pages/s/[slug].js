@@ -26,9 +26,13 @@ function RunScript({data, initialShowModal}) {
   const [showModal, setShowModal] = useState(initialShowModal);
   const [navbarOpen, setNavbarOpen] = useState(false);
   useEffect(() => {
-    const jsConfetti = new JSConfetti();
-    jsConfetti.addConfetti();
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("created")) {
+      const jsConfetti = new JSConfetti();
+      jsConfetti.addConfetti();
+    }
   }, []);
+
   useEffect(() => {
     window.__bs_run(data.script.code);
   }, []);
@@ -41,7 +45,7 @@ function RunScript({data, initialShowModal}) {
         <meta name="description" content={data.script.description}/>
       </Head>
       <nav className="navbar">
-        <div class="navbar-brand">
+        <div className="navbar-brand">
           <a
             role="button"
             className="navbar-burger"

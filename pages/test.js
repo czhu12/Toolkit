@@ -46,6 +46,19 @@ const initialize = () => {
     if (file) {
       bs.image(file, {width: 100, height: 'auto'});
     }
+    const formattedData = bs.dataTable(
+      [
+        { field: "make", editable: true },
+        { field: "model", editable: true },
+        { field: "price", editable: true },
+      ],
+      [
+        { make: "Toyota", model: "Celica", price: 35000 },
+        { make: "Ford", model: "Mondeo", price: 32000 },
+        { make: "Porsche", model: "Boxster", price: 72000 }
+      ],
+    );
+    bs.text("Responding to: " + formattedData[0].make);
     bs.iframe("https://www.youtube.com/embed/dXBohfjc4WA")
     const date = bs.dateInput("What is the current time?")
     bs.text(`Current Date: ${date}`);
@@ -72,6 +85,7 @@ const initialize = () => {
         max: 100,
         type: "number",
       });
+    bs.chart(config, {height: '400', width: '400'});
     const dataURL = bs.canvas((ctx) => {
       ctx.beginPath();
       ctx.moveTo(0, 0);
@@ -92,8 +106,7 @@ const initialize = () => {
     bs.text(`Data: ${JSON.stringify(response.data)}`);
     const checked = bs.checkbox("I don't want to pay taxes")
     bs.text(`You are checked: **${checked}**`);
-    bs.downloadButton("Hello world", "filename.png", "");
-    const clicked = bs.button("Submit")
+    const clicked = bs.button("Submit");
     if (clicked) {
       bs.text('Submitted! ');
     }
@@ -107,7 +120,6 @@ const initialize = () => {
     bs.video("/examples/video.mp4", {width: '400', height: '300'});
     bs.audio("http://ringelkater.de/Sounds/2geraeusche_tiere/dino_tyrannosaurus1.wav");
     data.datasets[0].data[0] = parseInt(taxRate);
-    bs.chart(config, {height: '400', width: '400'});
   }
   bs.start(code);
   _bs = bs;

@@ -1,0 +1,107 @@
+@import "./core/radio_and_checkbox.scss";
+.browser-script-screen {
+  > * {
+    margin: 20px 0;
+  }
+
+  .pointer {
+    cursor: pointer;
+  }
+
+  label {
+    margin-bottom: 5px;
+  }
+
+  pre {
+    background-color: transparent;
+    padding: 0 !important;
+  }
+
+  pre code {
+    padding: 0 !important;
+  }
+
+  .bs--code .copy-bar {
+    text-align: right;
+    font-size: 1.5em;
+    color: #34495e;
+  }
+
+  .bs--fileinput {
+    label {
+      display: block;
+    }
+
+    .file-label {
+      min-width: 80px;
+    }
+  }
+
+  .bs--dateinput label {
+    display: block;
+  }
+
+  .bs--timeinput label {
+    display: block;
+  }
+
+  .bs--radio input {
+    margin-right: 5px;
+  }
+
+  .bs--input label {
+    display: block;
+  }
+
+  .bs--slider label {
+    display: block;
+  }
+
+  .bs--colorinput {
+    label {
+      display: block;
+    }
+    input[type="color"] {
+      -webkit-appearance: none;
+      border: none;
+      background-color: transparent;
+      width: 32px;
+      height: 32px;
+    }
+    input[type="color"]::-webkit-color-swatch-wrapper {
+      padding: 0;
+      border-radius: 8px;
+    }
+    input[type="color"]::-webkit-color-swatch {
+      border: none;
+      border-radius: 8px;
+    }
+  }
+
+  .bs--checkbox {
+    label {
+      margin-right: 5px;
+    }
+  }
+
+  .bs--button {
+    display: block;
+  }
+
+  .bs--imageitem {
+    display: block;
+  }
+
+  .bs--videoitem {
+    display: block;
+  }
+
+  .bs--audioitem {
+    display: block;
+  }
+
+  .bs--canvas {
+    border: 1px solid #95a5a6;
+    border-radius: 5px;
+  }
+}

@@ -4,7 +4,7 @@ import BrowserScript from "../lib/core/views";
 
 import '../styles/bulma.scss'
 import '../styles/globals.scss'
-import '../styles/core.css'
+import '../styles/core.scss'
 import 'highlight.js/styles/github.css';
 
 if (typeof window !== "undefined") {
