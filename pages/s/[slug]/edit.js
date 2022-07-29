@@ -2,7 +2,6 @@ import { useQuery, useMutation } from '@apollo/client';
 import App from "../../../lib/components/editor/app";
 import {GET_SCRIPT, UPDATE_SCRIPT} from '../../../lib/api/definitions';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 
 function EditScript() {
   const router = useRouter();
@@ -12,8 +11,8 @@ function EditScript() {
     }
   });
   const [mutateFunction, { d, l, e }] = useMutation(UPDATE_SCRIPT);
-  const saveScript = (script) => {
-    mutateFunction({
+  const saveScript = async (script) => {
+    return await mutateFunction({
       variables: {
         input: {
           id: script.id,

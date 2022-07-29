@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import dynamic from 'next/dynamic'
 import EditModal from "./EditModal";
+import { Notyf } from "notyf";
+import 'notyf/notyf.min.css'; // for React, Vue and Svelte
+
 const Editor = dynamic(import('./index'), {ssr: false})
 
 
@@ -22,8 +25,10 @@ function App({initialScript, saveScript}) {
             </span>
             <span>Run</span>
           </button>
-          <button className="button" onClick={() => {
-            saveScript(script);
+          <button className="button" onClick={async () => {
+            await saveScript(script);
+            const notfy = new Notyf();
+            notfy.success("Saved");
           }}>
             <span className="icon">
               <i className="fa-solid fa-floppy-disk"></i>

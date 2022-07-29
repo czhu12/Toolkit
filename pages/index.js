@@ -49,7 +49,7 @@ function IndexPage() {
   return (
     <div>
       <Head>
-        <title>Tooltip, the easiest way to build and share apps.</title>
+        <title>Tooltip • The easiest way to build and share apps.</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           content="Tooltip is the easiest way to build and share interactive apps, no frontend experience required."
