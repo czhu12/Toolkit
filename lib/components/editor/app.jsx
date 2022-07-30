@@ -3,6 +3,8 @@ import dynamic from 'next/dynamic'
 import EditModal from "./EditModal";
 import { Notyf } from "notyf";
 import 'notyf/notyf.min.css'; // for React, Vue and Svelte
+import ActionBar from "./ActionBar";
+import NavbarLogo from "../common/NavbarLogo";
 
 const Editor = dynamic(import('./index'), {ssr: false})
 
@@ -16,44 +18,30 @@ function App({initialScript, saveScript}) {
   }
 
   return <div>
-    <nav>
-      <div className="columns">
-        <div className="column">
-          <button onClick={run} className="button">
-            <span className="icon">
-              <i className="fa-solid fa-play"></i>
-            </span>
-            <span>Run</span>
-          </button>
-          <button className="button" onClick={async () => {
-            await saveScript(script);
-            const notfy = new Notyf();
-            notfy.success("Saved");
-          }}>
-            <span className="icon">
-              <i className="fa-solid fa-floppy-disk"></i>
-            </span>
-            <span>Save</span>
-          </button>
-          <button className="button" onClick={() => {
-            setShowEditModal(true);
-          }}>
-            <span className="icon">
-              <i className="fa-solid fa-pen"></i>
-            </span>
-            <span>Edit</span>
-          </button>
+    <div>
+      <nav className="navbar">
+        <NavbarLogo />
+        <div className="navbar-menu">
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
     <div className="columns">
-      <div className="column py-0">
+      <div className="column">
         <Editor code={script.code} setCode={(code) => setScript({...script, code})} />
       </div>
       <div className="column">
         <div id="main-view"></div>
       </div>
     </div>
+    <ActionBar
+      onRun={run}
+      onSave={async () => {
+          await saveScript(script);
+          const notfy = new Notyf();
+          notfy.success("Saved");
+      }}
+      onEdit={() => setShowEditModal(true)}
+    />
     <EditModal
       show={showEditModal}
       setShow={setShowEditModal}

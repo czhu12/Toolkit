@@ -17,8 +17,20 @@ a {
 
 .dotted-border {
   height: 500px;
-  border: 1px white dashed;
+  border: 3px #b5b5b5 dashed;
   border-radius: 10px;
+}
+
+#your-app-here {
+  position: relative;
+}
+
+#your-app-here div {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .has-text-purple {

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import chunk from "lodash/chunk";
 import { useMutation, useQuery } from '@apollo/client';
 import { CREATE_SCRIPT, GET_POPULAR_SCRIPTS } from '../lib/api/definitions';
 import dynamic from 'next/dynamic'
 import ActionBar from "../lib/components/editor/ActionBar";
-import ScriptCard from "../lib/components/landing_page/ScriptCard";
 import Head from "next/head";
+import NavbarLogo from "../lib/components/common/NavbarLogo";
+import DisplayScripts from "../lib/components/common/scripts/DisplayScripts";
+import Link from "next/link";
 const Editor = dynamic(import('../lib/components/editor'), {ssr: false})
 const DEFAULT_CODE = `import jspdf from "https://cdn.skypack.dev/jspdf";
 
@@ -59,13 +60,7 @@ function IndexPage() {
       <nav className="navbar py-4">
         <div className="container is-fluid">
           <div className="navbar-brand">
-            <a className="navbar-item" href="/">
-              <figure className="image is-24x24">
-                <img src="/logos/tooltip-purple.png" />
-              </figure>
-
-              <div className="has-text-weight-bold is-size-5 has-color-purple ml-3">Tooltip</div>
-            </a>
+            <NavbarLogo />
             <a className="navbar-burger" role="button" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={() => setBarActive(!barActive)}>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
@@ -113,9 +108,11 @@ function IndexPage() {
       </section>
       <section className="section" id="try-now">
         <div className="container">
+          <div className="title is-size-1">
+            Build apps entirely in browser.
+          </div>
           <div className="columns">
             <div className="column">
-              <div className="title is-size-3 has-text-white">Edit the code here.</div>
               <div>
                 {typeof window !== "undefined" && (
                   <Editor code={code} setCode={setCode} />
@@ -126,9 +123,10 @@ function IndexPage() {
               }} />
             </div>
             <div className="column">
-              <div className="title is-size-3 has-text-white">Your app shows up here.</div>
               <div id="main-view">
-                <div id="temporary-id" className="dotted-border"></div>
+                <div id="your-app-here" className="dotted-border">
+                  <div className="subtitle">Your app here</div>
+                </div>
               </div>
             </div>
           </div>
@@ -136,26 +134,17 @@ function IndexPage() {
       </section>
       <section className="section">
         <div className="container">
-          <div className="columns">
-            <div className="column title is-size-1">
-              A gallery of popular apps
-            </div>
+          <div className="title is-size-1">
+            A gallery of popular apps
           </div>
-            {chunk(data?.scripts || [], 2).map((scripts, idx) => {
-              const s1 = scripts[0];
-              const s2 = scripts[1];
-              console.log(s1);
-              return (
-                <div key={`gallery-${idx}`} className="columns is-desktop">
-                  <div className="column">
-                    <ScriptCard script={s1} />
-                  </div>
-                  <div className="column">
-                    {s2 && <ScriptCard script={s2} />}
-                  </div>
-                </div>
-              );
-            })}
+          {data?.scripts && (
+            <div>
+              <DisplayScripts scripts={data?.scripts} />
+              <div className="has-text-centered mt-5 subtitle is-10">
+                <Link href="/browse">See More</Link>
+              </div>
+            </div>
+          )}
         </div>
       </section>
       <section className="section">
