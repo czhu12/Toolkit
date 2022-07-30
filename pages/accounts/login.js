@@ -21,10 +21,10 @@ function IndexPage() {
       }
     });
 
-    if (!result.data.errors) {
-      login(result.data.token);
+    if (!result.data.signInUser.errors) {
+      login(result.data.signInUser.token);
     } else {
-      alert(result.data.errors);
+      alert(result.data.signInUser.errors);
     }
   }
 

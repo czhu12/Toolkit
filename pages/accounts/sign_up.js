@@ -21,8 +21,8 @@ function IndexPage() {
       }
     });
 
-    if (!result.data.errors) {
-      login(result.data.token);
+    if (!result.data.signUpUser.errors) {
+      login(result.data.signUpUser.token);
     } else {
       alert(result.data.errors)
     }
