@@ -4,7 +4,6 @@ import NewModal from '../../lib/components/runner/NewModal';
 import JSConfetti from 'js-confetti'
 import Head from 'next/head';
 import client from '../../apollo-client';
-import EditModal from '../../lib/components/editor/EditModal';
 
 export async function getServerSideProps({query}) {
   const response = await client.query({
