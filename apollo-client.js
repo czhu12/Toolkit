@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
-
+const { NEXT_PUBLIC_BACKEND_URL } = process.env;
 
 const defaultOptions = {
     watchQuery: {
@@ -14,7 +14,7 @@ const defaultOptions = {
 }
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3000/graphql",
+  uri: NEXT_PUBLIC_BACKEND_URL,
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -34,7 +34,7 @@ export const authenticatedClient = new ApolloClient({
 });
 
 const client = new ApolloClient({
-    uri: "http://localhost:3000/graphql",
+    uri: NEXT_PUBLIC_BACKEND_URL,
     cache: new InMemoryCache(),
     defaultOptions: defaultOptions
 });
