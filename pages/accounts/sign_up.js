@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CREATE_ACCOUNT } from '../../lib/api/definitions';
 import { useMutation } from '@apollo/client';
 import { login } from "../../lib/components/accounts/utils";
+import { withDefaultHeaders } from "../../lib/components/common/headers";
 
 function IndexPage() {
   const [mutateFunction] = useMutation(CREATE_ACCOUNT);
@@ -77,4 +78,4 @@ function IndexPage() {
   )
 }
 
-export default IndexPage;
+export default withDefaultHeaders(IndexPage);

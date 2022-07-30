@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { LOGIN } from '../../lib/api/definitions';
 import { useMutation } from '@apollo/client';
 import { login } from "../../lib/components/accounts/utils";
+import { withDefaultHeaders } from "../../lib/components/common/headers";
 
 function IndexPage() {
   const [mutateFunction] = useMutation(LOGIN);
@@ -20,9 +21,9 @@ function IndexPage() {
         }
       }
     });
-
     if (!result.data.signInUser.errors) {
       login(result.data.signInUser.token);
+      window.location.href = "/accounts/me"
     } else {
       alert(result.data.signInUser.errors);
     }
@@ -67,4 +68,4 @@ function IndexPage() {
   )
 }
 
-export default IndexPage;
+export default withDefaultHeaders(IndexPage);
