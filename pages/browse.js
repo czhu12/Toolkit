@@ -86,9 +86,11 @@ function BrowsePage() {
             <div>
               <DisplayScripts scripts={data.scripts.scripts} n={3} />
               <div className="mt-5">
-                <Pagination currentPage={page} totalPages={data.scripts.totalPages} onClick={(newPage) => {
-                  setPage(newPage);
-                }} />
+                {data?.scripts?.scripts.length >= 0 && (
+                  <Pagination currentPage={page} totalPages={data.scripts.totalPages} onClick={(newPage) => {
+                    setPage(newPage);
+                  }} />
+                )}
               </div>
             </div>
           )}
