@@ -137,11 +137,15 @@ function IndexPage() {
           <div className="title is-size-1">
             A gallery of popular apps
           </div>
-          {data?.scripts && (
+          {data?.scripts?.scripts && (
             <div>
-              <DisplayScripts scripts={data?.scripts} />
-              <div className="has-text-centered mt-5 subtitle is-10">
-                <Link href="/browse">See More</Link>
+              <DisplayScripts scripts={data.scripts.scripts} />
+              <div className="has-text-centered mt-5 pt-5 subtitle is-10">
+                <Link href="/browse">
+                  <span className="pointer">
+                    See More <i className="fa-solid fa-arrow-right"></i>
+                  </span>
+                </Link>
               </div>
             </div>
           )}

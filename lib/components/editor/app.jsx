@@ -4,7 +4,6 @@ import EditModal from "./EditModal";
 import { Notyf } from "notyf";
 import 'notyf/notyf.min.css'; // for React, Vue and Svelte
 import ActionBar from "./ActionBar";
-import NavbarLogo from "../common/NavbarLogo";
 
 const Editor = dynamic(import('./index'), {ssr: false})
 
@@ -18,13 +17,6 @@ function App({initialScript, saveScript}) {
   }
 
   return <div>
-    <div>
-      <nav className="navbar">
-        <NavbarLogo />
-        <div className="navbar-menu">
-        </div>
-      </nav>
-    </div>
     <div className="columns">
       <div className="column">
         <Editor code={script.code} setCode={(code) => setScript({...script, code})} />

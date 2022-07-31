@@ -2,6 +2,8 @@ import { useQuery, useMutation } from '@apollo/client';
 import App from "../../../lib/components/editor/app";
 import {GET_SCRIPT, UPDATE_SCRIPT} from '../../../lib/api/definitions';
 import { useRouter } from 'next/router';
+import NavbarLogo from '../../../lib/components/common/NavbarLogo';
+
 
 function EditScript() {
   const router = useRouter();
@@ -32,10 +34,21 @@ function EditScript() {
     {
       typeof window !== "undefined" &&
       data?.script &&
-      <App
-        initialScript={data.script}
-        saveScript={saveScript}
-      />
+      <div>
+        <nav className="navbar">
+          <div className="container is-fluid">
+            <div className="navbar-brand">
+              <NavbarLogo />
+            </div>
+            <div className="navbar-menu">
+            </div>
+          </div>
+        </nav>
+        <App
+          initialScript={data.script}
+          saveScript={saveScript}
+        />
+      </div>
     }
   </div>
 }
