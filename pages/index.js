@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useMutation, useQuery } from '@apollo/client';
-import { CREATE_SCRIPT, GET_POPULAR_SCRIPTS } from '../lib/api/definitions';
+import { CREATE_SCRIPT, GET_SCRIPTS } from '../lib/api/definitions';
 import dynamic from 'next/dynamic'
 import ActionBar from "../lib/components/editor/ActionBar";
 import Head from "next/head";
-import NavbarLogo from "../lib/components/common/NavbarLogo";
+import NavbarLogo from "../lib/components/common/navigation/NavbarLogo";
 import DisplayScripts from "../lib/components/common/scripts/DisplayScripts";
 import Link from "next/link";
 const Editor = dynamic(import('../lib/components/editor'), {ssr: false})
@@ -27,7 +27,7 @@ if (bs.button("Generate")) {
 
 function IndexPage() {
   const [mutateFunction, { d, l, e }] = useMutation(CREATE_SCRIPT);
-  const { loading, error, data } = useQuery(GET_POPULAR_SCRIPTS, {variables: {page: 1}});
+  const { loading, error, data } = useQuery(GET_SCRIPTS, {variables: {page: 1}});
   const [code, setCode] = useState(DEFAULT_CODE);
   const createScript = async () => {
     const result = await mutateFunction({
@@ -75,10 +75,10 @@ function IndexPage() {
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="buttons">
-                  <a href="/accounts/sign_up" className="button is-primary">
+                  <a href="/sign_up" className="button is-primary">
                     <strong>Sign up</strong>
                   </a>
-                  <a href="/accounts/login" className="button is-light">
+                  <a href="/login" className="button is-light">
                     Log in
                   </a>
                 </div>

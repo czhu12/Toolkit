@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { LOGIN } from '../../lib/api/definitions';
+import { CREATE_ACCOUNT } from '../lib/api/definitions';
 import { useMutation } from '@apollo/client';
-import { login } from "../../lib/components/accounts/utils";
-import { withDefaultHeaders } from "../../lib/components/common/headers";
+import { login } from "../lib/components/accounts/utils";
+import { withDefaultHeaders } from "../lib/components/common/headers";
 
 function IndexPage() {
-  const [mutateFunction] = useMutation(LOGIN);
+  const [mutateFunction] = useMutation(CREATE_ACCOUNT);
   const [form, setForm] = useState({});
 
   const handleChange = (e) => {
@@ -21,11 +21,12 @@ function IndexPage() {
         }
       }
     });
-    if (!result.data.signInUser.errors) {
-      login(result.data.signInUser.token);
-      window.location.href = "/accounts/me"
+
+    if (!result.data.signUpUser.errors) {
+      login(result.data.signUpUser.token);
+      window.location.href = "/me";
     } else {
-      alert(result.data.signInUser.errors);
+      alert(result.data.signUpUser.errors);
     }
   }
 
@@ -34,11 +35,15 @@ function IndexPage() {
       <div className="container is-max-desktop">
       <article className="message">
         <div className="message-header">
-          <div className="title has-text-white">Login</div>
+          <div className="title has-text-white">Sign Up</div>
         </div>
           <div className="message-body">
             <form onSubmit={handleSubmit}>
               <div className="field">
+                <label className="label" htmlFor="username">Username</label>
+                <div className="control has-icons-left">
+                  <input className="input" type="text" placeholder="Username" name="username" onChange={handleChange}/><span className="icon is-left"><i className="fa fa-user"></i></span>
+                </div>
                 <label className="label mt-3" htmlFor="email">Email</label>
                 <div className="control has-icons-left">
                   <input className="input" type="email" placeholder="Email" name="email" onChange={handleChange}/><span className="icon is-left"><i className="fa fa-envelope"></i></span>
@@ -50,13 +55,19 @@ function IndexPage() {
                       <input className="input" type="password" placeholder="Password" name="password" onChange={handleChange}/><span className="icon is-left"><i className="fa fa-key"></i></span>
                     </div>
                   </div>
+                  {/* <div className="column">
+                    <label className="label" htmlFor="retypePassword">Re-Type Password</label>
+                    <div className="control has-icons-left">
+                      <input className="input" type="password" placeholder="Confirm Password" name="retypePassword"/><span className="icon is-left"><i className="fa fa-lock"></i></span>
+                    </div>
+                  </div> */}
                 </div>
                 <div className="field is-grouped">
                   <div className="control">
-                    <button className="button is-medium is-primary">Login</button>
+                    <button className="button is-primary is-medium" type="submit">Register</button>
                   </div>
                   <div className="control">
-                    <a className="button is-medium" href="/accounts/sign_up">Register</a>
+                    <a className="button is-medium" href="/accounts/login">Login</a>
                   </div>
                 </div>
               </div>

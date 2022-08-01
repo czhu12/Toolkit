@@ -19,24 +19,23 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   const token = window.localStorage.getItem('token');
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+  if (token) {
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : "",
+      }
     }
+  } else {
+    return { headers };
   }
 });
 
-export const authenticatedClient = new ApolloClient({
+const client = new ApolloClient({
   link: authLink.concat(httpLink),
+  uri: NEXT_PUBLIC_BACKEND_URL,
   cache: new InMemoryCache(),
   defaultOptions: defaultOptions
-});
-
-const client = new ApolloClient({
-    uri: NEXT_PUBLIC_BACKEND_URL,
-    cache: new InMemoryCache(),
-    defaultOptions: defaultOptions
 });
 
 export default client;
