@@ -2,7 +2,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import App from "../../../lib/components/editor/app";
 import {GET_SCRIPT, UPDATE_SCRIPT} from '../../../lib/api/definitions';
 import { useRouter } from 'next/router';
-import NavbarLogo from '../../../lib/components/common/NavbarLogo';
+import NavbarLogo from '../../../lib/components/common/navigation/NavbarLogo';
 
 
 function EditScript() {

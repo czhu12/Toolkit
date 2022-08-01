@@ -18,7 +18,10 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = window.localStorage.getItem('token');
+  let token;
+  if (typeof window !== 'undefined') {
+    token = window.localStorage.getItem('token');
+  }
   if (token) {
     return {
       headers: {

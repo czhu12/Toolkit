@@ -43,7 +43,7 @@ function IndexPage() {
       }
     });
     if (!result.data.createScript.errors) {
-      window.location.href = `/s/${result.data.createScript.script.slug}?first=1&created=true`;
+      window.location.href = `/s/${result.data.createScript.script.slug}?created=true`;
     }
   }
   const [barActive, setBarActive] = useState(false);
