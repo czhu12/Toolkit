@@ -20,7 +20,7 @@ function App({initialScript, saveScript}) {
     <div id="editor-body">
       <div className="columns is-gapless m-0 is-full-height">
         <div className="column editor-code">
-          <Editor code={script.code} setCode={(code) => setScript({...script, code})} />
+          <Editor code={script.code} setCode={(code) => setScript({...script, code})} height="100%" />
           <ActionBar
             onRun={run}
             onSave={async () => {

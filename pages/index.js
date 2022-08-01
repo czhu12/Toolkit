@@ -93,10 +93,10 @@ function IndexPage() {
             <div className="column is-12 is-5-desktop">
               <h1 className="mb-5 is-size-1 is-size-3-mobile has-text-weight-bold" style={{lineHeight: '1.2em'}}>A Faster Way to Build and Share Apps</h1>
               <h5 className="subtitle has-text-grey my-5">We turn your scripts into full blown apps. No HTML or CSS required.</h5>
-              <a className="button is-info is-large my-5 is-size-5" href="#try-now">
+              <a className="button is-info is-large my-3 is-size-5" href="#try-now">
                 Try Tooltip Now
               </a>
-              <div className="mt-3 subtitle is-size-7">
+              <div className="mt-1 subtitle is-size-7">
                 No account needed.
               </div>
             </div>
@@ -151,17 +151,10 @@ function IndexPage() {
           )}
         </div>
       </section>
-      <section className="section">
-        <div className="container">
-          <div className="columns">
-            <div className="column">
-              <div className="title is-size-1">
-                Build beautiful applications, no frontend skills needed.
-              </div>
-              <div className="subtitle is-size-3">
-                Build beautiful applications, no frontend skills needed.
-              </div>
-            </div>
+      <section className="section hero is-info">
+        <div className="container hero-body">
+          <div className="title is-size-2">
+            Build beautiful applications, no frontend skills needed.
           </div>
         </div>
       </section>
