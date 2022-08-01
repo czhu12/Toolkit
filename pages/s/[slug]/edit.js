@@ -31,11 +31,18 @@ function EditScript() {
   }
 
   return <div>
+    <style>{`
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden !important;
+      }
+    `}</style>
     {
       typeof window !== "undefined" &&
       data?.script &&
-      <div>
-        <nav className="navbar">
+      <div id="editor">
+        <nav className="navbar is-black" role="navigation">
           <div className="container is-fluid">
             <div className="navbar-brand">
               <NavbarLogo />

@@ -35,20 +35,18 @@ function BrowsePage() {
         q: q ? q : null
       },
     });
-    setData(data.data);
+    setData(data?.data);
     setLoading(false);
   }
 
   useEffect(() => {
-    console.log("Initial");
     performSearch(search, page);
   }, [search, page]);
 
-  console.log(data);
   return (
     <div>
       <Head>
-        <title>Browse Popular Tools</title>
+        <title>Browse Popular Apps</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <nav className="navbar">

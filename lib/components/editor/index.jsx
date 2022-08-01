@@ -9,6 +9,7 @@ function Editor({code, setCode}) {
     <AceEditor
       showPrintMargin={false}
       width="100%"
+      height="100%"
       mode="rust"
       theme="chaos"
       fontSize="1em"

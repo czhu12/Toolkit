@@ -16,30 +16,32 @@ function App({initialScript, saveScript}) {
     window.__bs_run(script.code);
   }
 
-  return <div>
-    <div className="columns">
-      <div className="column">
-        <Editor code={script.code} setCode={(code) => setScript({...script, code})} />
+  return (
+    <div id="editor-body">
+      <div className="columns is-gapless m-0 is-full-height">
+        <div className="column editor-code">
+          <Editor code={script.code} setCode={(code) => setScript({...script, code})} />
+          <ActionBar
+            onRun={run}
+            onSave={async () => {
+                await saveScript(script);
+                const notfy = new Notyf();
+                notfy.success("Saved");
+            }}
+            onEdit={() => setShowEditModal(true)}
+          />
+        </div>
+        <div className="column">
+          <div id="main-view"></div>
+        </div>
       </div>
-      <div className="column">
-        <div id="main-view"></div>
-      </div>
+      <EditModal
+        show={showEditModal}
+        setShow={setShowEditModal}
+        script={script}
+      />
     </div>
-    <ActionBar
-      onRun={run}
-      onSave={async () => {
-          await saveScript(script);
-          const notfy = new Notyf();
-          notfy.success("Saved");
-      }}
-      onEdit={() => setShowEditModal(true)}
-    />
-    <EditModal
-      show={showEditModal}
-      setShow={setShowEditModal}
-      script={script}
-    />
-  </div>
+  )
 }
 
 export default App;
