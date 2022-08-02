@@ -3,7 +3,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { GET_POPULAR_SCRIPTS } from "../lib/api/definitions";
-import NavbarLogo from "../lib/components/common/NavbarLogo";
+import NavbarLogo from "../lib/components/common/navigation/NavbarLogo";
 import Pagination from "../lib/components/common/Pagination";
 import DisplayScripts from "../lib/components/common/scripts/DisplayScripts";
 
