@@ -7,7 +7,7 @@ import { Navbar } from "../lib/components/common/navigation/Navbar";
 function MePage() {
   return (
     <div>
-      <AuthProvider>
+      <AuthProvider lazy={true}>
         <Navbar />
         <Profile />
       </AuthProvider>

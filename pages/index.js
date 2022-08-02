@@ -61,7 +61,8 @@ function AuthAwareNavbar({barActive}) {
             {currentUser && (
               <div className="navbar-item">
                 <a href="/me">
-                  Dashboard
+                  My Apps&nbsp;
+                  <i className="fa-solid fa-arrow-right"></i>
                 </a>
               </div>
             )}
