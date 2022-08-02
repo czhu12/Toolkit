@@ -3,6 +3,7 @@ import App from "../../../lib/components/editor/app";
 import {GET_SCRIPT, UPDATE_SCRIPT} from '../../../lib/api/definitions';
 import { useRouter } from 'next/router';
 import NavbarLogo from '../../../lib/components/common/navigation/NavbarLogo';
+import { Navbar } from '../../../lib/components/common/navigation/Navbar';
 
 
 function EditScript() {
@@ -42,15 +43,7 @@ function EditScript() {
       typeof window !== "undefined" &&
       data?.script &&
       <div id="editor">
-        <nav className="navbar is-black" role="navigation">
-          <div className="container is-fluid">
-            <div className="navbar-brand">
-              <NavbarLogo />
-            </div>
-            <div className="navbar-menu">
-            </div>
-          </div>
-        </nav>
+        <Navbar container={false} dark={true} />
         <App
           initialScript={data.script}
           saveScript={saveScript}

@@ -43,7 +43,7 @@ function AuthAwareNavbar({barActive}) {
         </div>
         <div className={`navbar-menu ${barActive && 'is-active'}`} id="navbarBasicExample">
           <div className="navbar-start">
-            <a className="navbar-item" href="#try-now">About</a>
+            <a className="navbar-item" href="#try-now">Try Now</a>
           </div>
           <div className="navbar-end">
             {!currentUser && (
