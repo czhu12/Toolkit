@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Head from 'next/head'
 import { useEffect } from 'react';
-import BrowserScript from "../lib/core/views"
+import Toolkit from "../lib/core/views"
 import styles from '../styles/Home.module.css'
 import { setupCache } from 'axios-cache-adapter'
 const cache = setupCache({
@@ -37,16 +37,16 @@ const config = {
   options: {responsive: false}
 };
 
-let _bs = null;
+let _kit = null;
 const initialize = () => {
-  const bs = new BrowserScript(window.document.getElementById('main-view'))
+  const kit = new Toolkit(window.document.getElementById('main-view'))
   const code = async function() {
-    bs.text("## Calculate your taxes!");
-    const file = bs.fileInput("Upload your Image", {as: 'image'});
+    kit.text("## Calculate your taxes!");
+    const file = kit.fileInput("Upload your Image", {as: 'image'});
     if (file) {
-      bs.image(file, {width: 100, height: 'auto'});
+      kit.image(file, {width: 100, height: 'auto'});
     }
-    const formattedData = bs.dataTable(
+    const formattedData = kit.dataTable(
       [
         { field: "make", editable: true },
         { field: "model", editable: true },
@@ -58,19 +58,20 @@ const initialize = () => {
         { make: "Porsche", model: "Boxster", price: 72000 }
       ],
     );
-    bs.html(`This is custom HTML <a href="https://google.com">Click here to go to google</a>`)
-    bs.text("Responding to: " + formattedData[0].make);
-    bs.iframe("https://www.youtube.com/embed/dXBohfjc4WA")
-    const date = bs.dateInput("What is the current time?")
-    bs.text(`Current Date: ${date}`);
-    const time = bs.timeInput("What is the current time?")
-    bs.text(`Current Time: ${time}`);
-    const country = bs.radio("Where do you live?", ["Canada", "United States"]);
-    bs.text(`Your Country: ${country ? country : ""}`);
-    if (bs.button("Click here to show stuff")) {
-      bs.text("Hello world!");
+    kit.html(`This is custom HTML <a href="https://google.com">Click here to go to google</a>`)
+    kit.text("Responding to: " + formattedData[0].make);
+    kit.nonexistant();
+    kit.iframe("https://www.youtube.com/embed/dXBohfjc4WA")
+    const date = kit.dateInput("What is the current time?")
+    kit.text(`Current Date: ${date}`);
+    const time = kit.timeInput("What is the current time?")
+    kit.text(`Current Time: ${time}`);
+    const country = kit.radio("Where do you live?", ["Canada", "United States"]);
+    kit.text(`Your Country: ${country ? country : ""}`);
+    if (kit.button("Click here to show stuff")) {
+      kit.text("Hello world!");
     }
-    const value = bs.input(
+    const value = kit.input(
       "Your annual income",
       {
         defaultValue: 0,
@@ -78,7 +79,7 @@ const initialize = () => {
         type: "number",
       }
     );
-    const taxRate = bs.slider(
+    const taxRate = kit.slider(
       "Your Tax Rate",
       {
         defaultValue: 0,
@@ -86,48 +87,48 @@ const initialize = () => {
         max: 100,
         type: "number",
       });
-    bs.chart(config, {height: '400', width: '400'});
-    const dataURL = bs.canvas((ctx) => {
+    kit.chart(config, {height: '400', width: '400'});
+    const dataURL = kit.canvas((ctx) => {
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.lineTo(taxRate, taxRate);
       ctx.stroke();
     }, {height: 300, width: 300});
-    const colorSelected = bs.colorPicker("Pick a color!");
-    const webcam = bs.webcam();
+    const colorSelected = kit.colorPicker("Pick a color!");
+    const webcam = kit.webcam();
     if (webcam) {
-      bs.image(webcam);
+      kit.image(webcam);
     }
-    bs.text("Color selected " + colorSelected);
-    bs.downloadButton("Download", "image.png", dataURL);
+    kit.text("Color selected " + colorSelected);
+    kit.downloadButton("Download", "image.png", dataURL);
     if (value && taxRate) {
-      bs.text(`## Your tax is: $${value * taxRate / 100}!`);
+      kit.text(`## Your tax is: $${value * taxRate / 100}!`);
     }
     const response = await api.get("https://www.mockachino.com/e065c9e2-cd3f-4a/users");
-    bs.text(`Data: ${JSON.stringify(response.data)}`);
-    const checked = bs.checkbox("I don't want to pay taxes")
-    bs.text(`You are checked: **${checked}**`);
-    const clicked = bs.button("Submit");
+    kit.text(`Data: ${JSON.stringify(response.data)}`);
+    const checked = kit.checkbox("I don't want to pay taxes")
+    kit.text(`You are checked: **${checked}**`);
+    const clicked = kit.button("Submit");
     if (clicked) {
-      bs.text('Submitted! ');
+      kit.text('Submitted! ');
     }
-    bs.code(`
+    kit.code(`
       var a = 1;
       var b = 2;
       console.log(a + b);
       ${checked && 'console.log(a, b);'}
     `, {language: 'javascript'})
-    bs.image("https://i.imgur.com/CAcnA3e.jpeg", {width: '100', height: '100'});
-    bs.video("/examples/video.mp4", {width: '400', height: '300'});
-    bs.audio("http://ringelkater.de/Sounds/2geraeusche_tiere/dino_tyrannosaurus1.wav");
+    kit.image("https://i.imgur.com/CAcnA3e.jpeg", {width: '100', height: '100'});
+    kit.video("/examples/video.mp4", {width: '400', height: '300'});
+    kit.audio("http://ringelkater.de/Sounds/2geraeusche_tiere/dino_tyrannosaurus1.wav");
     data.datasets[0].data[0] = parseInt(taxRate);
   }
-  bs.start(code);
-  _bs = bs;
+  kit.start(code);
+  _kit = kit;
 }
 export default function Home() {
   useEffect(() => {
-    if (typeof window !== "undefined" && _bs === null) {
+    if (typeof window !== "undefined" && _kit === null) {
       initialize();
     }
   }, []);
