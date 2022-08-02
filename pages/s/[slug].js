@@ -5,6 +5,7 @@ import JSConfetti from 'js-confetti'
 import Head from 'next/head';
 import client from '../../apollo-client';
 import { useMutation } from '@apollo/client';
+import { AuthProvider } from '../../lib/components/accounts/utils';
 
 export async function getServerSideProps({query}) {
   const response = await client.query({
@@ -112,11 +113,13 @@ function RunScript({data, initialShowModal}) {
       {
         data?.script &&
         <div>
-          <NewModal show={showModal} setShow={setShowModal} />
-          <div className="thin-container container">
-            <div id="main-view">
+          <AuthProvider>
+            <NewModal show={showModal} setShow={setShowModal} />
+            <div className="thin-container container">
+              <div id="main-view">
+              </div>
             </div>
-          </div>
+          </AuthProvider>
         </div>
       }
     </div>
