@@ -11,11 +11,11 @@ import { AuthProvider, useAuth } from "../lib/components/accounts/utils";
 const Editor = dynamic(import('../lib/components/editor'), {ssr: false})
 const DEFAULT_CODE = `import jspdf from "https://cdn.skypack.dev/jspdf";
 
-bs.text(\`# PDF generator\`);
+kit.text(\`# PDF generator\`);
 
-const name = bs.input("Your Name");
+const name = kit.input("Your Name");
 
-if (bs.button("Generate")) {
+if (kit.button("Generate")) {
   const doc = new jspdf();
   const image = new Image();
   image.src = "/images/harvard_diploma.png";
@@ -107,7 +107,7 @@ function IndexPage() {
           />
         </Head>
         <AuthAwareNavbar barActive={barActive} />
-        <section className="section">
+        <section className="section has-background-light">
           <div className="container">
             <div className="my-3 py-3 columns is-multiline">
               <div className="column is-12 is-5-desktop">
@@ -128,18 +128,18 @@ function IndexPage() {
         </section>
         <section className="section" id="try-now">
           <div className="container">
-            <div className="title is-size-1">
-              Build apps entirely in browser.
+            <div className="title is-size-1 my-3">
+              Build apps entirely in browser
             </div>
             <div className="columns">
               <div className="column">
-                <div>
+                <div className="mb-3">
                   {typeof window !== "undefined" && (
                     <Editor code={code} setCode={setCode} />
                   )}
                 </div>
                 <ActionBar onSave={createScript} onRun={() => {
-                  window.__bs_run(code);
+                  window.__kit_run(code);
                 }} />
               </div>
               <div className="column">

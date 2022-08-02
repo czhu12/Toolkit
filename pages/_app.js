@@ -8,7 +8,7 @@ import '../styles/core.scss'
 import 'highlight.js/styles/github.css';
 
 if (typeof window !== "undefined") {
-  window.__bs_run = (code) => {
+  window.__kit_run = (code) => {
     Toolkit.run(code);
   }
 }
