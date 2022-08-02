@@ -58,6 +58,7 @@ const initialize = () => {
         { make: "Porsche", model: "Boxster", price: 72000 }
       ],
     );
+    bs.html(`This is custom HTML <a href="https://google.com">Click here to go to google</a>`)
     bs.text("Responding to: " + formattedData[0].make);
     bs.iframe("https://www.youtube.com/embed/dXBohfjc4WA")
     const date = bs.dateInput("What is the current time?")
