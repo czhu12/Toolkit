@@ -28,7 +28,7 @@ if (bs.button("Generate")) {
 
 function AuthAwareNavbar({barActive}) {
   const {currentUser} = useAuth();
-  console.log(currentUser);
+
   return (
     <nav className="navbar py-4">
       <div className="container">
