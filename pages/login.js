@@ -23,7 +23,7 @@ function IndexPage() {
     });
     if (!result.data.signInUser.errors) {
       login(result.data.signInUser.token);
-      window.location.href = "/accounts/me"
+      window.location.href = "/me"
     } else {
       alert(result.data.signInUser.errors);
     }
