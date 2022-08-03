@@ -145,6 +145,8 @@ function IndexPage() {
     if (!result.data.createScript.errors) {
       window.location.href = `/s/${result.data.createScript.script.slug}?created=true`;
     }
+    document.cookie = `script_id=${result.data.createScript.script.slug}`
+
   }
   const [barActive, setBarActive] = useState(false);
   return (

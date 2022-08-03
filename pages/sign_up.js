@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CREATE_ACCOUNT } from '../lib/api/definitions';
 import { useMutation } from '@apollo/client';
-import { login } from "../lib/components/accounts/utils";
+import { login, parseCookie } from "../lib/components/accounts/utils";
 import { withDefaultHeaders } from "../lib/components/common/headers";
 
 function IndexPage() {
@@ -18,6 +18,7 @@ function IndexPage() {
       variables: {
         input: {
           credentials: form,
+          scriptSlug: parseCookie(document.cookie).script_id
         }
       }
     });
@@ -67,7 +68,7 @@ function IndexPage() {
                     <button className="button is-primary is-medium" type="submit">Register</button>
                   </div>
                   <div className="control">
-                    <a className="button is-medium" href="/accounts/login">Login</a>
+                    <a className="button is-medium" href="/login">Login</a>
                   </div>
                 </div>
               </div>
