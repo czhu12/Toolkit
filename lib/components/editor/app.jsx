@@ -19,7 +19,7 @@ function App({initialScript, saveScript}) {
   return (
     <div id="editor-body">
       <div className="columns is-gapless m-0 is-full-height">
-        <div className="column editor-code">
+        <div className="column editor-code is-8">
           <Editor code={script.code} setCode={(code) => setScript({...script, code})} height="100%" />
           <ActionBar
             onRun={run}
@@ -31,7 +31,7 @@ function App({initialScript, saveScript}) {
             onEdit={() => setShowEditModal(true)}
           />
         </div>
-        <div className="column">
+        <div className="column is-4">
           <div id="main-view"></div>
         </div>
       </div>

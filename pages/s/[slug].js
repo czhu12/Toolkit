@@ -5,7 +5,8 @@ import JSConfetti from 'js-confetti'
 import Head from 'next/head';
 import client from '../../apollo-client';
 import { useMutation } from '@apollo/client';
-import { AuthProvider } from '../../lib/components/accounts/utils';
+import { AuthProvider, useAuth } from '../../lib/components/accounts/utils';
+import Modal from '../../lib/components/common/Modal';
 
 export async function getServerSideProps({query}) {
   const response = await client.query({
@@ -23,24 +24,11 @@ export async function getServerSideProps({query}) {
   }
 }
 
-function RunScript({data, initialShowModal}) {
-  const [showModal, setShowModal] = useState(initialShowModal);
+function AppNavbar({ script }) {
+  const { currentUser } = useAuth();
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const [mutateFunction, { d, l, e }] = useMutation(CREATE_SCRIPT);
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    if (searchParams.get("created")) {
-      const jsConfetti = new JSConfetti();
-      jsConfetti.addConfetti();
-    }
-  }, []);
-
-  useEffect(() => {
-    window.__bs_run(data.script.code);
-  }, []);
-
+  const [showStatisticsModal, setShowStatisticsModal] = useState(false);
   const forkApp = async () => {
-    const script = data.script;
     const result = await mutateFunction({
       variables: {
         input: {
@@ -60,11 +48,12 @@ function RunScript({data, initialShowModal}) {
 
   return (
     <div>
-      <Head>
-        <title>{data.script.title}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content={data.script.description}/>
-      </Head>
+      <Modal show={showStatisticsModal} setShow={setShowStatisticsModal} title="Statistics">
+        <div className="title has-text-centered is-1">
+          {script.runCount}
+        </div>
+        <div className="subtitle has-text-centered is-6">Run Count</div>
+      </Modal>
       <nav className="navbar">
         <div className="navbar-brand">
           <a
@@ -89,39 +78,78 @@ function RunScript({data, initialShowModal}) {
                 </a>
 
                 <div className="navbar-dropdown">
-                  <a className="navbar-item" href={`/s/${data.script.slug}/edit`}>
-                    Edit
-                  </a>
-                  <a className="navbar-item" href={`/s/${data.script.slug}/edit`}>
-                    View Source
-                  </a>
-                  <a className="navbar-item" onClick={forkApp}>
-                    Fork
+                  {script.user.id === currentUser?.id && (
+                    <a className="navbar-item" href={`/s/${script.slug}/edit`}>
+                      Edit
+                    </a>
+                  )}
+                  {script.user.id !== currentUser?.id && (
+                    <a className="navbar-item" href={`/s/${script.slug}/edit`}>
+                      View Source
+                    </a>
+                  )}
+                  {currentUser && (
+                    <a className="navbar-item" onClick={forkApp}>
+                      Fork
+                    </a>
+                  )}
+                  {!currentUser && (
+                    <a className="navbar-item" href="/sign_up">
+                      Create an Account to Fork
+                    </a>
+                  )}
+                  <a className="navbar-item" onClick={() => setShowStatisticsModal(true)}>
+                    Statistics
                   </a>
                   <hr className="navbar-divider" />
                   <a className="navbar-item">
-                    Report an issue
+                    Settings
                   </a>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
-
       </nav>
+    </div>
+  );
+}
+
+function RunScript({data, initialShowModal}) {
+  const [showModal, setShowModal] = useState(initialShowModal);
+  const [mutateFunction, { d, l, e }] = useMutation(CREATE_SCRIPT);
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.get("created")) {
+      const jsConfetti = new JSConfetti();
+      jsConfetti.addConfetti();
+    }
+  }, []);
+
+  useEffect(() => {
+    window.__bs_run(data.script.code);
+  }, []);
+
+  return (
+    <div>
+      <Head>
+        <title>{data.script.title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={data.script.description}/>
+      </Head>
       {
         data?.script &&
         <div>
-          <AuthProvider>
+          <AuthProvider lazy={false}>
+            <AppNavbar script={data.script} />
             <NewModal show={showModal} setShow={setShowModal} />
-            <div className="thin-container container">
-              <div id="main-view">
-              </div>
-            </div>
           </AuthProvider>
         </div>
       }
+      <div className="thin-container container">
+        <div id="main-view">
+        </div>
+      </div>
     </div>
   )
 }
