@@ -127,7 +127,7 @@ function RunScript({data, initialShowModal}) {
   }, []);
 
   useEffect(() => {
-    window.__bs_run(data.script.code);
+    window.__kit_run(data.script.code);
   }, []);
 
   return (

@@ -13,7 +13,7 @@ function App({initialScript, saveScript}) {
   const [showEditModal, setShowEditModal] = useState(false);
   const run = () => {
     saveScript(script);
-    window.__bs_run(script.code);
+    window.__kit_run(script.code);
   }
 
   return (

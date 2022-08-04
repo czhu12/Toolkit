@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useMutation, useQuery } from '@apollo/client';
 import { CREATE_SCRIPT, GET_SCRIPTS } from '../lib/api/definitions';
 import dynamic from 'next/dynamic'
@@ -77,6 +77,27 @@ if (kit.button("Generate")) {
   doc.save("diploma.pdf");
 }
 `;
+
+
+function RotateThroughImages() {
+  const images = ["combined-1", "combined-2", "combined-3", "combined-4"];
+  const [currentImage, setCurrentImage] = useState(0);
+  const currentImageRef = useRef(currentImage);
+  useEffect(() => {
+    let intervalId;
+    if (typeof window !== 'undefined') {
+      console.log("Starting");
+      intervalId = setInterval(() => {
+        currentImageRef.current = (currentImageRef.current + 1) % images.length;
+        console.log(currentImageRef.current);
+        setCurrentImage(currentImageRef.current);
+      }, 1500);
+    }
+  }, [], () => {
+    clearInterval(intervalId);
+  });
+  return <img src={`/images/screenshots/${images[currentImage]}.png`} />;
+}
 
 function AuthAwareNavbar({barActive}) {
   const {currentUser} = useAuth();
@@ -176,7 +197,7 @@ function IndexPage() {
                 </div>
               </div>
               <div className="column is-12 is-7-desktop">
-                <img src="/images/screenshot-with-code.png" />
+                <RotateThroughImages />
               </div>
             </div>
           </div>
