@@ -4,6 +4,7 @@ import {GET_SCRIPT, UPDATE_SCRIPT} from '../../../lib/api/definitions';
 import { useRouter } from 'next/router';
 import NavbarLogo from '../../../lib/components/common/navigation/NavbarLogo';
 import { Navbar } from '../../../lib/components/common/navigation/Navbar';
+import { AuthProvider } from '../../../lib/components/accounts/utils';
 
 
 function EditScript() {
@@ -43,11 +44,13 @@ function EditScript() {
       typeof window !== "undefined" &&
       data?.script &&
       <div id="editor">
-        <Navbar container={false} dark={true} />
-        <App
-          initialScript={data.script}
-          saveScript={saveScript}
-        />
+        <AuthProvider>
+          <Navbar container={false} dark={true} />
+          <App
+            initialScript={data.script}
+            saveScript={saveScript}
+          />
+        </AuthProvider>
       </div>
     }
   </div>

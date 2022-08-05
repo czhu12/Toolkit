@@ -21,15 +21,17 @@ function App({initialScript, saveScript}) {
       <div className="columns is-gapless m-0 is-full-height">
         <div className="column editor-code is-8">
           <Editor code={script.code} setCode={(code) => setScript({...script, code})} height="100%" />
-          <ActionBar
-            onRun={run}
-            onSave={async () => {
+          <div className="mx-3">
+            <ActionBar
+              onRun={run}
+              onSave={async () => {
                 await saveScript(script);
                 const notfy = new Notyf();
                 notfy.success("Saved");
-            }}
-            onEdit={() => setShowEditModal(true)}
-          />
+              }}
+              onEdit={() => setShowEditModal(true)}
+            />
+          </div>
         </div>
         <div className="column is-4">
           <div id="main-view"></div>
