@@ -159,10 +159,10 @@ function IndexPage() {
     <AuthProvider lazy={false}>
       <div className="has-background-light">
         <Head>
-          <title>Tooltip • The easiest way to build and share apps.</title>
+          <title>Toolkit • The easiest way to build and share apps.</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta
-            content="Tooltip is the easiest way to build and share interactive apps, no frontend experience required."
+            content="Toolkit is the easiest way to build and share interactive apps, no frontend experience required."
             name="description"
           />
         </Head>
@@ -175,7 +175,7 @@ function IndexPage() {
                 <h1 className="mb-5 is-size-1 is-size-3-mobile has-text-weight-bold" style={{lineHeight: '1.2em'}}>A Faster Way to Build and Share Apps</h1>
                 <h5 className="subtitle has-text-grey my-5">We turn your scripts into full blown apps. No HTML or CSS required.</h5>
                 <a className="button is-info is-large my-3 is-size-5" href="#try-now">
-                  Try Tooltip Now
+                  Try Toolkit Now
                 </a>
                 <div className="mt-1 subtitle is-size-7">
                   No account needed. Completely free.

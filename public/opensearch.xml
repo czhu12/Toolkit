@@ -3,6 +3,6 @@
     <ShortName>Toolkit</ShortName>
     <Description>Search Toolkit for everything apps.</Description>
     <InputEncoding>UTF-8</InputEncoding>
-    <Image width="16" height="16" type="image/x-icon">https://toolkit-puce.vercel.app/logos/tooltip-purple.png</Image>
+    <Image width="16" height="16" type="image/x-icon">https://toolkit-puce.vercel.app/logos/toolkit-purple.png</Image>
     <Url type="text/html" method="get" template="https://toolkit-puce.vercel.app/browse?q={searchTerms}"/>
 </OpenSearchDescription>

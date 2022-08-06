@@ -1,4 +1,5 @@
 @import "./core/radio_and_checkbox.scss";
+@import "./core/slider.scss";
 .browser-script-screen {
   padding: 20px;
   > * {
@@ -55,10 +56,6 @@
   }
 
   .kit--select label {
-    display: block;
-  }
-
-  .kit--slider label {
     display: block;
   }
 
