@@ -60,12 +60,13 @@ const initialize = () => {
     );
     kit.html(`This is custom HTML <a href="https://google.com">Click here to go to google</a>`)
     kit.text("Responding to: " + formattedData[0].make);
-    kit.nonexistant();
     kit.iframe("https://www.youtube.com/embed/dXBohfjc4WA")
     const date = kit.dateInput("What is the current time?")
     kit.text(`Current Date: ${date}`);
     const time = kit.timeInput("What is the current time?")
     kit.text(`Current Time: ${time}`);
+    const selectedValue = kit.select("Favorite food", ["Hamburger", "Graffiti"], {defaultValue: "Graffiti"});
+    kit.text(`Selected: ${selectedValue ? selectedValue : ""}`);
     const country = kit.radio("Where do you live?", ["Canada", "United States"]);
     kit.text(`Your Country: ${country ? country : ""}`);
     if (kit.button("Click here to show stuff")) {
