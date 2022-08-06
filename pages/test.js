@@ -12,28 +12,24 @@ const api = axios.create({
   adapter: cache.adapter
 })
 
-const labels = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-];
-
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'My First dataset',
-    backgroundColor: 'rgb(255, 99, 132)',
-    borderColor: 'rgb(255, 99, 132)',
-    data: [100, 10, 5, 2, 20, 30, 45],
-  }]
-};
-
 const config = {
   type: 'line',
-  data: data,
+  data: {
+    labels: [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+    ],
+    datasets: [{
+      label: 'My First dataset',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [100, 10, 5, 2, 20, 30, 45],
+    }]
+  },
   options: {responsive: false}
 };
 

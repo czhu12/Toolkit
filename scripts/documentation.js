@@ -193,5 +193,157 @@ kit.downloadButton("Download this image!")
 
 
 kit.text("## Data Elements");
+kit.text(`
+##### Chart
+A chart.js chart.
+
+\`\`\`
+const config = {
+  type: 'line',
+  data: {
+    labels: [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+    ],
+    datasets: [{
+      label: 'My First dataset',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [100, 10, 5, 2, 20, 30, 45],
+    }]
+  },
+  options: {responsive: false}
+};
+kit.chart(config, {height: '400', width: '400'});
+\`\`\`
+`);
+const config = {
+  type: 'line',
+  data: {
+    labels: [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+    ],
+    datasets: [{
+      label: 'My First dataset',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [100, 10, 5, 2, 20, 30, 45],
+    }]
+  },
+  options: {responsive: false}
+};
+kit.chart(config, {height: '400', width: '400'});
+
+kit.text(`
+##### Data Table
+An editable data table.
+
+\`\`\`
+const formattedData = kit.dataTable(
+  [
+    { field: "make", editable: true },
+    { field: "model", editable: true },
+    { field: "price", editable: true },
+  ],
+  [
+    { make: "Toyota", model: "Celica", price: 35000 },
+    { make: "Ford", model: "Mondeo", price: 32000 },
+    { make: "Porsche", model: "Boxster", price: 72000 }
+  ],
+);
+kit.text("The first car make is: " + formattedData[0].make);
+\`\`\`
+`);
+const formattedData = kit.dataTable(
+  [
+    { field: "make", editable: true },
+    { field: "model", editable: true },
+    { field: "price", editable: true },
+  ],
+  [
+    { make: "Toyota", model: "Celica", price: 35000 },
+    { make: "Ford", model: "Mondeo", price: 32000 },
+    { make: "Porsche", model: "Boxster", price: 72000 }
+  ],
+);
+kit.text("The first car make is: " + formattedData[0].make);
+
 kit.text("## Media Elements");
-kit.text("## Status Elements");
+kit.text(`
+##### Image
+An image that can accept a network image or local file.
+
+\`\`\`
+kit.image("https://i.imgur.com/CAcnA3e.jpeg");
+\`\`\`
+`);
+
+kit.image("https://i.imgur.com/CAcnA3e.jpeg");
+
+kit.text(`
+##### Audio
+A network audio file.
+
+\`\`\`
+kit.audio("http://ringelkater.de/Sounds/2geraeusche_tiere/dino_tyrannosaurus1.wav");
+\`\`\`
+`);
+
+kit.audio("http://ringelkater.de/Sounds/2geraeusche_tiere/dino_tyrannosaurus1.wav");
+
+kit.text(`
+##### Video
+A network video file.
+
+\`\`\`
+kit.video("/examples/video.mp4");
+\`\`\`
+`);
+
+kit.video("/examples/video.mp4");
+
+kit.text(`
+##### Webcam
+A webcam stream.
+
+\`\`\`
+if (kit.button("Show webcam")) {
+  const photo = kit.webcam();
+  if (kit.button("Take photo")) {
+    kit.image(photo);
+  }
+}
+\`\`\`
+`);
+
+if (kit.button("Show webcam")) {
+  const photo = kit.webcam();
+  if (kit.button("Take photo")) {
+    kit.image(photo);
+  }
+}
+
+kit.text("## Notification Elements");
+
+kit.text(`
+##### Alert
+Alert message
+
+\`\`\`
+kit.alert("This is an alert!", {alertType: "danger"});
+kit.alert("Congrats, you're awesome", {alertType: "success"});
+kit.alert("Put some interesting info here.", {alertType: "info"});
+\`\`\`
+`);
+kit.alert("This is an alert!", {alertType: "danger"});
+kit.alert("Congrats, you're awesome", {alertType: "success"});
+kit.alert("Put some interesting info here.", {alertType: "info"});
