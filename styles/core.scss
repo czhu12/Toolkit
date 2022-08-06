@@ -1,6 +1,8 @@
 @import "./core/radio_and_checkbox.scss";
 @import "./core/slider.scss";
 .browser-script-screen {
+  overflow: auto;
+  height: 100%;
   padding: 20px;
   > * {
     margin: 20px 0;
