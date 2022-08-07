@@ -78,12 +78,12 @@ function AppNavbar({ script }) {
                 </a>
 
                 <div className="navbar-dropdown">
-                  {script.user.id === currentUser?.id && (
+                  {script.user?.id === currentUser?.id && (
                     <a className="navbar-item" href={`/s/${script.slug}/edit`}>
                       Edit
                     </a>
                   )}
-                  {script.user.id !== currentUser?.id && (
+                  {script.user?.id !== currentUser?.id && (
                     <a className="navbar-item" href={`/s/${script.slug}/edit`}>
                       View Source
                     </a>

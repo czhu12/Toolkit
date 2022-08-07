@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 import { login, parseCookie } from "../lib/components/accounts/utils";
 import { withDefaultHeaders } from "../lib/components/common/headers";
 
-function IndexPage() {
+function SignUp() {
   const [mutateFunction] = useMutation(CREATE_ACCOUNT);
   const [form, setForm] = useState({});
 
@@ -80,4 +80,4 @@ function IndexPage() {
   )
 }
 
-export default withDefaultHeaders(IndexPage);
+export default withDefaultHeaders(SignUp);

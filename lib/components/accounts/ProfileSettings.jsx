@@ -29,25 +29,25 @@ export default function ProfileSettings({show, setShow}) {
 
   return <Modal show={show} setShow={setShow} title="Settings">
         <fieldset disabled>
-          <div class="field">
-            <label class="label">Username</label>
-            <div class="control">
-              <input class="input" type="text" placeholder={currentUser.username}/>
+          <div className="field">
+            <label className="label">Username</label>
+            <div className="control">
+              <input className="input" type="text" value={currentUser.username} readOnly />
             </div>
           </div>
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
-              <input class="input" type="email" placeholder={currentUser.email}/>
+          <div className="field">
+            <label className="label">Email</label>
+            <div className="control">
+              <input className="input" type="email" value={currentUser.email} readOnly />
             </div>
           </div>
           
         </fieldset>
-        <div class="field mt-2">
-          <label class="label">Personal Website</label>
-          <div class="control">
+        <div className="field mt-2">
+          <label className="label">Personal Website</label>
+          <div className="control">
             <input
-              class="input"
+              className="input"
               type="text"
               value={form.personalWebsite}
               name="personalWebsite"
@@ -56,14 +56,14 @@ export default function ProfileSettings({show, setShow}) {
             />
           </div>
         </div>
-        <div class="field is-grouped is-grouped-right">
-          <p class="control">
-            <a class="button is-primary" onClick={updateUser}>
+        <div className="field is-grouped is-grouped-right">
+          <p className="control">
+            <a className="button is-primary" onClick={updateUser}>
               Submit
             </a>
           </p>
-          <p class="control">
-            <a class="button is-light">
+          <p className="control">
+            <a className="button is-light">
               Cancel
             </a>
           </p>

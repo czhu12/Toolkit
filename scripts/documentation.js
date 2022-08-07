@@ -56,7 +56,7 @@ kit.text("You entered: " + inputText)
 \`\`\`
 `);
 const inputText = kit.input("Type in something!");
-kit.text("You entered: " + inputText);
+kit.text("You entered: " + inputText, {key: "text-entered-1"});
 
 kit.text(`
 ##### Text Area Input
@@ -92,7 +92,7 @@ kit.text("You entered: " + dateInput);
 \`\`\`
 `);
 const dateInput = kit.dateInput("Choose a date");
-kit.text("You entered: " + dateInput);
+kit.text("You entered: " + dateInput, {key: "text-entered-2"});
 
 kit.text(`
 ##### Time Input
@@ -104,7 +104,7 @@ kit.text("You entered: " + timeInput);
 \`\`\`
 `);
 const timeInput = kit.timeInput("Choose a time");
-kit.text("You entered: " + timeInput);
+kit.text("You entered: " + timeInput, {key: "text-entered-3"});
 
 kit.text(`
 ##### Button
@@ -287,7 +287,7 @@ kit.image("https://i.imgur.com/CAcnA3e.jpeg");
 \`\`\`
 `);
 
-kit.image("https://i.imgur.com/CAcnA3e.jpeg");
+kit.image("https://i.imgur.com/CAcnA3e.jpeg", {width: '100', height: '100'});
 
 kit.text(`
 ##### Audio
