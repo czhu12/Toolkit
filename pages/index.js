@@ -222,7 +222,7 @@ function IndexPage() {
               <div>
                 <DisplayScripts scripts={data.scripts.scripts} />
                 <div className="has-text-centered mt-5 pt-5 subtitle is-10">
-                  <Link href="/browse">
+                  <Link href="/search">
                     <span className="pointer">
                       See More <i className="fa-solid fa-arrow-right"></i>
                     </span>
