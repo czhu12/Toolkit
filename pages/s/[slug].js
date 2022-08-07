@@ -28,6 +28,7 @@ function AppNavbar({ script }) {
   const { currentUser } = useAuth();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [showStatisticsModal, setShowStatisticsModal] = useState(false);
+  const [mutateFunction, { d, l, e }] = useMutation(CREATE_SCRIPT);
   const forkApp = async () => {
     const result = await mutateFunction({
       variables: {
@@ -42,7 +43,7 @@ function AppNavbar({ script }) {
       }
     });
     if (!result.data.createScript.errors) {
-      window.location.href = `/s/${result.data.createScript.script.slug}?first=1&created=true`;
+      window.location.href = `/s/${result.data.createScript.script.slug}?created=true`;
     }
   }
 
@@ -117,7 +118,6 @@ function AppNavbar({ script }) {
 
 function RunScript({data, initialShowModal}) {
   const [showModal, setShowModal] = useState(initialShowModal);
-  const [mutateFunction, { d, l, e }] = useMutation(CREATE_SCRIPT);
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     if (searchParams.get("created")) {
