@@ -56,7 +56,7 @@ function BrowsePage() {
           </div>
         </div>
       </nav>
-      <div className="container my-5">
+      <div className="container section">
         <div className="my-5 is-size-1 is-size-3-mobile has-text-weight-bold">
           Search Apps
         </div>
