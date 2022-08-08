@@ -63,7 +63,7 @@ export default function ProfileSettings({show, setShow}) {
             </a>
           </p>
           <p className="control">
-            <a className="button is-light">
+            <a className="button is-light" onClick={() => setShow(false)}>
               Cancel
             </a>
           </p>

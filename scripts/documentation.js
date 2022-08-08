@@ -3,7 +3,7 @@ kit.text(`
 ##### Text
 Render markdown text.
 
-\`\`\`
+\`\`\`javascript
 kit.text("**Hello**, *world*!");
 \`\`\`
 `);
@@ -14,7 +14,7 @@ kit.text(`
 ##### Code
 Render syntax highlighted code.
 
-\`\`\`
+\`\`\`javascript
 kit.code("const a = 1;", {language: "javascript"});
 \`\`\`
 `);
@@ -25,7 +25,7 @@ kit.text(`
 ##### IFrame
 Render iframe embed.
 
-\`\`\`
+\`\`\`javascript
 kit.iframe("https://www.youtube.com/embed/dXBohfjc4WA");
 \`\`\`
 `);
@@ -36,8 +36,8 @@ kit.text(`
 ##### Html
 Render custom HTML.
 
-\`\`\`
-kit.iframe("<a href='https://google.com'>Click here</a> to go to Toolkit");
+\`\`\`javascript
+kit.html("<a href='https://google.com'>Click here</a> to go to Toolkit");
 \`\`\`
 `);
 
@@ -50,9 +50,9 @@ kit.text(`
 ##### Text Input
 A string input element.
 
-\`\`\`
+\`\`\`javascript
 const inputText = kit.input("Type in something!");
-kit.text("You entered: " + inputText)
+kit.text("You entered: " + inputText, {key: "text-entered-1"});
 \`\`\`
 `);
 const inputText = kit.input("Type in something!");
@@ -62,7 +62,7 @@ kit.text(`
 ##### Text Area Input
 A text area input
 
-\`\`\`
+\`\`\`javascript
 const textAreaValue = kit.textarea("Write long stuff here")
 kit.text("Your writing: " + textAreaValue);
 \`\`\`
@@ -74,7 +74,7 @@ kit.text(`
 ##### File Input
 A file input element.
 
-\`\`\`
+\`\`\`javascript
 const inputImage = kit.fileInput("Upload your file", {as: "image"});
 if (inputImage) kit.image(inputImage);
 \`\`\`
@@ -86,7 +86,7 @@ kit.text(`
 ##### Date Input
 A date input element.
 
-\`\`\`
+\`\`\`javascript
 const dateInput = kit.dateInput("Choose a date");
 kit.text("You entered: " + dateInput);
 \`\`\`
@@ -98,7 +98,7 @@ kit.text(`
 ##### Time Input
 A date input element.
 
-\`\`\`
+\`\`\`javascript
 const timeInput = kit.timeInput("Choose a time");
 kit.text("You entered: " + timeInput);
 \`\`\`
@@ -110,7 +110,7 @@ kit.text(`
 ##### Button
 A button element.
 
-\`\`\`
+\`\`\`javascript
 const clicked = kit.button("Click me!");
 if (clicked) {
   kit.text("Clicked!");
@@ -126,7 +126,7 @@ kit.text(`
 ##### Slider
 A slider element.
 
-\`\`\`
+\`\`\`javascript
 const sliderValue = kit.slider("Slider");
 kit.text("Slider value: " + slidervalue);
 \`\`\`
@@ -138,7 +138,7 @@ kit.text(`
 ##### Radio
 A list of radio elements.
 
-\`\`\`
+\`\`\`javascript
 const radioValue = kit.radio("Where do you live?", ["Canada", "United States"]);
 kit.text("Selected radio " + radioValue);
 \`\`\`
@@ -150,7 +150,7 @@ kit.text(`
 ##### Select
 A select element.
 
-\`\`\`
+\`\`\`javascript
 const selectedValue = kit.radio("Whats your favorite country?", ["Canada", "United States"]);
 kit.text("Selected value " + selectedValue);
 \`\`\`
@@ -162,7 +162,7 @@ kit.text(`
 ##### Checkbox
 A checkbox element.
 
-\`\`\`
+\`\`\`javascript
 const checkboxValue = kit.checkbox("My fancy checkbox");
 kit.text("Is checked: " + checkboxValue);
 \`\`\`
@@ -174,7 +174,7 @@ kit.text(`
 ##### Color Picker
 A color picker element.
 
-\`\`\`
+\`\`\`javascript
 const colorValue = kit.colorPicker("Pick a color!")
 kit.text("Color selected: " + colorValue);
 \`\`\`
@@ -186,8 +186,8 @@ kit.text(`
 ##### Download Button
 A button that downloads data to users browser.
 
-\`\`\`
-kit.downloadButton("Download this image!")
+\`\`\`javascript
+kit.downloadButton("Download this image!");
 \`\`\`
 `);
 
@@ -197,7 +197,7 @@ kit.text(`
 ##### Chart
 A chart.js chart.
 
-\`\`\`
+\`\`\`javascript
 const config = {
   type: 'line',
   data: {
@@ -247,7 +247,7 @@ kit.text(`
 ##### Data Table
 An editable data table.
 
-\`\`\`
+\`\`\`javascript
 const formattedData = kit.dataTable(
   [
     { field: "make", editable: true },
@@ -282,8 +282,8 @@ kit.text(`
 ##### Image
 An image that can accept a network image or local file.
 
-\`\`\`
-kit.image("https://i.imgur.com/CAcnA3e.jpeg");
+\`\`\`javascript
+kit.image("https://i.imgur.com/CAcnA3e.jpeg", {width: '100', height: '100'});
 \`\`\`
 `);
 
@@ -293,7 +293,7 @@ kit.text(`
 ##### Audio
 A network audio file.
 
-\`\`\`
+\`\`\`javascript
 kit.audio("http://ringelkater.de/Sounds/2geraeusche_tiere/dino_tyrannosaurus1.wav");
 \`\`\`
 `);
@@ -304,7 +304,7 @@ kit.text(`
 ##### Video
 A network video file.
 
-\`\`\`
+\`\`\`javascript
 kit.video("/examples/video.mp4");
 \`\`\`
 `);
@@ -315,7 +315,7 @@ kit.text(`
 ##### Webcam
 A webcam stream.
 
-\`\`\`
+\`\`\`javascript
 if (kit.button("Show webcam")) {
   const photo = kit.webcam();
   if (kit.button("Take photo")) {
@@ -338,7 +338,7 @@ kit.text(`
 ##### Alert
 Alert message
 
-\`\`\`
+\`\`\`javascript
 kit.alert("This is an alert!", {alertType: "danger"});
 kit.alert("Congrats, you're awesome", {alertType: "success"});
 kit.alert("Put some interesting info here.", {alertType: "info"});
