@@ -54,3 +54,12 @@
 .is-full-height {
   height: 100%;
 }
+
+.card {
+  display:flex;
+  flex-direction: column;
+}
+
+.card-footer {
+  margin-top: auto;
+}
