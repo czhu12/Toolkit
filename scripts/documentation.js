@@ -33,15 +33,15 @@ kit.iframe("https://www.youtube.com/embed/dXBohfjc4WA");
 kit.iframe("https://www.youtube.com/embed/dXBohfjc4WA");
 
 kit.text(`
-##### HtmlItem
+##### Html
 Render custom HTML.
 
 \`\`\`
-kit.iframe("This is custom HTML <a href="https://google.com">Click here to go to google</a>");
+kit.iframe("<a href='https://google.com'>Click here</a> to go to Toolkit");
 \`\`\`
 `);
 
-kit.iframe("This is custom HTML <a href='https://google.com'>Click here to go to google</a>");
+kit.html("<a href='https://google.com'>Click here</a> to go to Toolkit");
 
 
 kit.text("## Input Elements");
