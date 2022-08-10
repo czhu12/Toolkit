@@ -48,7 +48,7 @@ function RunScript({data, initialShowModal}) {
         data?.script &&
         <div>
           <AuthProvider lazy={false}>
-            <SlugNavbar script={data.script} />
+            <SlugNavbar script={data.script} mode="app" />
             <NewModal show={showModal} setShow={setShowModal} />
           </AuthProvider>
         </div>

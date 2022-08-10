@@ -3,11 +3,11 @@ import Head from "next/head";
 import React, { useEffect } from "react";
 import hljs from 'highlight.js';
 import { CREATE_SCRIPT, GET_SCRIPT } from "../../../lib/api/definitions";
-import { Navbar } from "../../../lib/components/common/navigation/Navbar";
 import { AuthProvider } from "../../../lib/components/accounts/utils";
 import client from "../../../apollo-client";
 import { useMutation } from '@apollo/client';
 import Link from 'next/link';
+import SlugNavbar from '../../../lib/components/common/navigation/SlugNavbar';
 const Editor = dynamic(import('../../../lib/components/editor'), {ssr: false})
 
 export async function getServerSideProps({query}) {
@@ -56,7 +56,7 @@ function SourcePage({ data }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <AuthProvider lazy={false}>
-        <Navbar />
+        <SlugNavbar script={data.script} mode="source" />
         <div className="container section">
           <div className="my-1 is-size-1 is-size-3-mobile has-text-weight-bold">
             {data.script.title}
@@ -65,7 +65,7 @@ function SourcePage({ data }) {
             <Link href={`/s/${data.script.slug}`}>View App</Link>
           </div>
           <div>
-            <Editor code={data.script.code} />
+            <Editor code={data.script.code} readOnly={true} />
           </div>
           <div className="mt-3 has-text-right">
             <button className="button is-primary" onClick={forkApp}>
