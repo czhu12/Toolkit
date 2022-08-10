@@ -1,3 +1,27 @@
+kit.text(`
+# What is Toolkit?
+Toolkit turns scripts into beautiful apps so you can focus on functionality. How many times have you wanted to build a simple app, like an PNG to JPEG converter, but didn't want to fight through HTML, CSS, domain names, hosting fees, etc?
+Toolkit is an attempt to strip down an app to its core components, and make it as easy as scripting.
+
+Toolkit gives you a full Javascript environment with a UI framework that makes building apps as easy as it always should have been. Toolkit takes advantage of ES modules to directly load libraries into the browser.
+100% open source and executed directly on the browser. Toolkit will soon have a Javascript library so that you can easily host Toolkit apps within any existing web app you already have.
+
+Toolkit comes with a UI framework that distills interactive UI's down to scripts. Anytime inputs change, Toolkit re-runs your entire script so that you don't need to worry about all the details of capturing and responding to event handlers.
+
+For example, here is a full markdown editor in 2 lines of code:
+
+\`\`\`javascript
+// Get some input from the user with \`kit.textarea\`
+const text = kit.textarea("Your content here");
+// Show the text, with \`kit.text\` which supports markdown
+kit.text(text);
+\`\`\`
+`);
+
+const text = kit.textarea("Your content here");
+kit.text(text);
+
+kit.text("# UI Framework");
 kit.text("## Display Elements");
 kit.text(`
 ##### Text
@@ -347,3 +371,28 @@ kit.alert("Put some interesting info here.", {alertType: "info"});
 kit.alert("This is an alert!", {alertType: "danger"});
 kit.alert("Congrats, you're awesome", {alertType: "success"});
 kit.alert("Put some interesting info here.", {alertType: "info"});
+
+kit.text(`
+# Imports
+
+Toolkit relies on ES modules to import packages without requiring a build tool, so everything can run in browser.
+For instance:
+
+\`\`\`
+import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+
+if (kit.button("Click me!")) {
+  confetti();
+}
+\`\`\`
+`);
+
+import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+
+if (kit.button("Click me to show confetti!")) {
+  confetti();
+}
+kit.text(`
+# Debugging
+Toolkit is just javascript, so debugging in toolkit works the exactly the same way as it would normally. Add a \`debugger\` anywhere in your Toolkit script, and open the developer console in your browser.
+`);

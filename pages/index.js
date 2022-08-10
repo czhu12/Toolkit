@@ -71,10 +71,8 @@ function RotateThroughImages() {
   const currentImageRef = useRef(currentImage);
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      console.log("Starting");
       intervalId = setInterval(() => {
         currentImageRef.current = (currentImageRef.current + 1) % images.length;
-        console.log(currentImageRef.current);
         setCurrentImage(currentImageRef.current);
       }, 1500);
     }
@@ -192,8 +190,8 @@ function IndexPage() {
             <div className="title is-size-1 my-3">
               Build apps entirely in browser
             </div>
-            <div className="columns">
-              <div className="column">
+            <div className="columns is-desktop">
+              <div className="column is-6">
                 <div className="mb-3">
                   {typeof window !== "undefined" && (
                     <Editor code={code} setCode={setCode} />
@@ -203,7 +201,7 @@ function IndexPage() {
                   window.__kit_run(code);
                 }} />
               </div>
-              <div className="column">
+              <div className="column is-6">
                 <div id="main-view">
                   <div id="your-app-here" className="dotted-border">
                     <div className="subtitle">Your app here</div>
