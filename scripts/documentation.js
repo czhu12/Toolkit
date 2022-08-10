@@ -1,9 +1,11 @@
 kit.text(`
 # What is Toolkit?
-Toolkit turns scripts into beautiful apps so you can focus on functionality. How many times have you wanted to build a simple app, like an PNG to JPEG converter, but didn't want to fight through HTML, CSS, domain names, hosting fees, etc?
+Toolkit turns scripts into beautiful apps so you can focus on functionality. If you've ever wanted to build a simple app, but didn't want to fight through HTML, CSS, domain names, hosting fees, etc. Toolkit might be refreshing.
+
 Toolkit is an attempt to strip down an app to its core components, and make it as easy as scripting.
 
 Toolkit gives you a full Javascript environment with a UI framework that makes building apps as easy as it always should have been. Toolkit takes advantage of ES modules to directly load libraries into the browser.
+
 100% open source and executed directly on the browser. Toolkit will soon have a Javascript library so that you can easily host Toolkit apps within any existing web app you already have.
 
 Toolkit comes with a UI framework that distills interactive UI's down to scripts. Anytime inputs change, Toolkit re-runs your entire script so that you don't need to worry about all the details of capturing and responding to event handlers.

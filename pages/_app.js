@@ -6,6 +6,7 @@ import '../styles/bulma.scss'
 import '../styles/globals.scss'
 import '../styles/core.scss'
 import 'highlight.js/styles/github.css';
+import 'notyf/notyf.min.css';
 
 if (typeof window !== "undefined") {
   window.__kit_run = (code) => {

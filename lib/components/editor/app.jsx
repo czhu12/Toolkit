@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import dynamic from 'next/dynamic'
 import EditModal from "./EditModal";
 import { Notyf } from "notyf";
-import 'notyf/notyf.min.css'; // for React, Vue and Svelte
 import ActionBar from "./ActionBar";
 
 const Editor = dynamic(import('./index'), {ssr: false})
@@ -24,6 +23,7 @@ function App({initialScript, saveScript}) {
           <div className="mx-3">
             <ActionBar
               onRun={run}
+              viewApp={`/s/${script.slug}`}
               onSave={async () => {
                 await saveScript(script);
                 const notfy = new Notyf();

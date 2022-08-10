@@ -5,7 +5,7 @@ import JSConfetti from 'js-confetti'
 import Head from 'next/head';
 import client from '../../apollo-client';
 import { AuthProvider } from '../../lib/components/accounts/utils';
-import AppNavbar from '../../lib/components/common/navigation/SlugNavbar';
+import SlugNavbar from '../../lib/components/common/navigation/SlugNavbar';
 
 export async function getServerSideProps({query}) {
   const response = await client.query({
@@ -48,7 +48,7 @@ function RunScript({data, initialShowModal}) {
         data?.script &&
         <div>
           <AuthProvider lazy={false}>
-            <AppNavbar script={data.script} />
+            <SlugNavbar script={data.script} />
             <NewModal show={showModal} setShow={setShowModal} />
           </AuthProvider>
         </div>
