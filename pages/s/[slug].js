@@ -30,6 +30,7 @@ function RunScript({data, initialShowModal}) {
     if (searchParams.get("created")) {
       const jsConfetti = new JSConfetti();
       jsConfetti.addConfetti();
+      window.history.pushState({}, document.title, window.location.pathname);
     }
   }, []);
 
@@ -49,7 +50,7 @@ function RunScript({data, initialShowModal}) {
         <div>
           <AuthProvider lazy={false}>
             <SlugNavbar script={data.script} mode="app" />
-            <NewModal show={showModal} setShow={setShowModal} />
+            <NewModal show={showModal} setShow={setShowModal} script={data.script} />
           </AuthProvider>
         </div>
       }
