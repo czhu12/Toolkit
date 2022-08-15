@@ -274,33 +274,33 @@ kit.text(`
 An editable data table.
 
 \`\`\`javascript
-const formattedData = kit.dataTable(
-  [
+const formattedData = kit.dataTable({
+  columnDefs: [
     { field: "make", editable: true },
     { field: "model", editable: true },
     { field: "price", editable: true },
   ],
-  [
+  rowData: [
     { make: "Toyota", model: "Celica", price: 35000 },
     { make: "Ford", model: "Mondeo", price: 32000 },
     { make: "Porsche", model: "Boxster", price: 72000 }
   ],
-);
+});
 kit.text("The first car make is: " + formattedData[0].make);
 \`\`\`
 `);
-const formattedData = kit.dataTable(
-  [
+const formattedData = kit.dataTable({
+  columnDefs: [
     { field: "make", editable: true },
     { field: "model", editable: true },
     { field: "price", editable: true },
   ],
-  [
+  rowData: [
     { make: "Toyota", model: "Celica", price: 35000 },
     { make: "Ford", model: "Mondeo", price: 32000 },
     { make: "Porsche", model: "Boxster", price: 72000 }
   ],
-);
+});
 kit.text("The first car make is: " + formattedData[0].make);
 
 kit.text("## Media Elements");
