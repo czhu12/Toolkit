@@ -1,6 +1,6 @@
 import React from "react";
 import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/mode-rust";
+import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-chaos";
 
 
@@ -11,7 +11,7 @@ function Editor({code, setCode, readOnly=false, height="500px"}) {
       readOnly={readOnly}
       width="100%"
       height={height}
-      mode="rust"
+      mode="javascript"
       theme="chaos"
       fontSize="1em"
       value={code}
