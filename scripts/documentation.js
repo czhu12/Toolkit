@@ -394,6 +394,25 @@ import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 if (kit.button("Click me to show confetti!")) {
   confetti();
 }
+
+kit.text(`
+Include all your favorite libraries that are available on CDN's for example:
+
+\`\`\`
+import "https://code.jquery.com/jquery-3.6.0.js";
+
+if (kit.button("Show JQuery Version")) {
+  kit.text("JQuery Version: " + jQuery.fn.jquery);
+}
+\`\`\`
+`);
+
+import "https://code.jquery.com/jquery-3.6.0.js";
+
+if (kit.button("Show JQuery Version")) {
+  kit.text("JQuery Version: " + jQuery.fn.jquery);
+}
+
 kit.text(`
 # Debugging
 Toolkit is just javascript, so debugging in toolkit works the exactly the same way as it would normally. Add a \`debugger\` anywhere in your Toolkit script, and open the developer console in your browser.
