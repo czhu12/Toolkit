@@ -14,3 +14,9 @@ body {
 
 $modal-content-width: 900px;
 @import "bulma/bulma.sass";
+
+
+.is-dragover .file-cta {
+  background-color: #eee;
+  color: #363636;
+}
